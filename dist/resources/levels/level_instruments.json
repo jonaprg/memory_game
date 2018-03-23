@@ -1,0 +1,46 @@
+{
+    "images_amount" : 8,
+    "images_path": "/img/",
+    "images": [
+        {
+            "id": 1,
+            "path": "img_01.png",
+            "name": "cupcakeLocasitos"
+        },
+        {
+            "id": 2,
+            "path": "img_02.png",
+            "name": "cupcakeNata"
+        },
+        {
+            "id": 3,
+            "path": "img_03.png",
+            "name": "cupcakeXoco"
+        },
+        {
+            "id": 4,
+            "path": "img_04.png",
+            "name": "cupcakeVainilla"
+        },
+        {
+            "id": 5,
+            "path": "img_05.png",
+            "name": "kiwi"
+        },
+        {
+            "id": 6,
+            "path": "img_06.png",
+            "name": "pinya"
+        },
+        {
+            "id": 7,
+            "path": "img_07.png",
+            "name": "sindria"
+        },
+        {
+            "id": 8,
+            "path": "img_08.png",
+            "name": "taronja"
+        }
+    ]
+}

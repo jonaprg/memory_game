@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background: url(resources/img/background.jpg) no-repeat;
+    font-family: 'Cousine', monospace;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+}
+/* APP */
+#app {
+    width: 50%;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+
+}
+/* Menu game */
+#menu { 
+    width: 350px;
+    height: 250px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+}
+.item-menu {
+
+    box-shadow: 1px 11px 25px 0 rgb(84, 123, 38);
+    width: 100%;
+    height: 170px;
+    border: none;
+    cursor: pointer;
+    font-size: 35px;
+}
+#titleGame {
+    font-size: 50px;
+}
+/* Game table */
+#game {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background: #29422a;
+    box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
+}
+.item-card {
+    height: 150px;
+    width: 185px;
+    margin: 0 5px 5px;
+    background: #78a544;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 5px 2px 20px 0 rgb(37, 37, 36);
+    display: flex;
+    justify-content: center;
+}
+.item-card img{
+    width: 70%;
+    height: 80%;
+    align-self: center;
+}
+/* Info table */
+#info{
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    background: #29422a;
+    box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
+}
+.nav-info {
+    box-shadow: 4px 2px 20px 0 rgb(6, 6, 0);
+    background: #dae1dc;
+    margin: 5px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+}
+.nav-info h3 {
+    margin: 20px auto;
+}
+
+@media (max-width: 498px){
+    .item-card {
+        height: 75px;
+        width: 85px;
+    }
+    #app {
+        width: 100%;
+    }
+}
