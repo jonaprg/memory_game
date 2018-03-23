@@ -1,5 +1,5 @@
 # webpack-babel-basic-biolerplate
-Basic boilerplate for ES6
+Memory game by JL
 
 ### Installing
 
@@ -14,3 +14,4 @@ npm run dev
 ```
 npm run build
 ```
+
