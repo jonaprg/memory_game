@@ -1,6 +1,6 @@
 {
     "images_amount" : 8,
-    "images_path": "/img/",
+    "images_path": "resources/img/",
     "images": [
         {
             "id": 1,

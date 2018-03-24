@@ -1,4 +1,4 @@
-import { Game } from './Game.js';
+import { Game } from './Game';
 
 class Main {
 
@@ -30,10 +30,8 @@ class Main {
         new Game(this.level);
     }
 
-    getApp(){
-        return document.getElementById('app');
-    }
+
 
 }
 
-let main = new Main("http:/sergionovo.me/jona/memoryGame/dist/resources/config.json");
+let main = new Main("resources/config.json");

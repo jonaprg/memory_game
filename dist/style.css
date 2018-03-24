@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background: url(resources/img/background.jpg) no-repeat;
+    background: url("resources/img/background.jpg") no-repeat;
     font-family: 'Cousine', monospace;
     background-size: cover;
     height: 100vh;
@@ -78,7 +78,7 @@ body {
     background: #29422a;
     box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
 }
-.nav-info {
+.item-info {
     box-shadow: 4px 2px 20px 0 rgb(6, 6, 0);
     background: #dae1dc;
     margin: 5px;
@@ -86,7 +86,7 @@ body {
     width: 100%;
     text-align: center;
 }
-.nav-info h3 {
+.item-info h3 {
     margin: 20px auto;
 }
 
