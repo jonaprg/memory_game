@@ -29,9 +29,6 @@ class Main {
     startGame(){
         new Game(this.level);
     }
-
-
-
 }
 
 let main = new Main("resources/config.json");

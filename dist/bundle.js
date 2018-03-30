@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,44 @@
 "use strict";
 
 
-var _Main = __webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Game = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Taulell = __webpack_require__(3);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Game = exports.Game = function () {
+    function Game(level) {
+        _classCallCheck(this, Game);
+
+        this.taulell = new _Taulell.Taulell(4, 4, level);
+        this.startGame();
+    }
+
+    _createClass(Game, [{
+        key: 'startGame',
+        value: function startGame() {
+            this.taulell.flipCards(5000);
+        }
+    }, {
+        key: 'check',
+        value: function check(fitxa1, fitxa2) {
+            return fitxa1.id === fitxa2.id;
+        }
+    }], [{
+        key: 'getApp',
+        value: function getApp() {
+            return document.getElementById('app');
+        }
+    }]);
+
+    return Game;
+}();
 
 /***/ }),
 /* 1 */
@@ -79,9 +116,18 @@ var _Main = __webpack_require__(1);
 "use strict";
 
 
+var _Main = __webpack_require__(2);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Game = __webpack_require__(2);
+var _Game = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -133,42 +179,6 @@ var Main = function () {
 var main = new Main("resources/config.json");
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.Game = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Taulell = __webpack_require__(3);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Game = exports.Game = function () {
-    function Game(level) {
-        _classCallCheck(this, Game);
-
-        this.taulell = new _Taulell.Taulell(level);
-        this.getApp().innerHTML = '\n            <div id="info">' + this.taulell.createTableInfo() + '</div>\n            <div id="game">\n                ' + this.taulell.createTableGame() + '\n            </div>\n\n       ';
-    }
-
-    _createClass(Game, [{
-        key: 'getApp',
-        value: function getApp() {
-            return document.getElementById('app');
-        }
-    }]);
-
-    return Game;
-}();
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -182,39 +192,93 @@ exports.Taulell = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Fixa = __webpack_require__(4);
+var _Fitxa = __webpack_require__(4);
+
+var _Game = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Taulell = exports.Taulell = function () {
-    function Taulell(level) {
+    function Taulell(columns, rows, level) {
         _classCallCheck(this, Taulell);
 
-        this.amount = level.images_amount;
-        this.imagesPath = level.images_path;
-        this.images = level.images;
+        this.columns = columns;
+        this.rows = rows;
+
+        this.cards = this.generateCards(level);
+        this.shuffleCards(this.cards);
+
+        this.table = this.generateTaulell();
+        this.printTaulell();
     }
 
     _createClass(Taulell, [{
-        key: "createTableGame",
-        value: function createTableGame() {
-
-            var table = "";
-            for (var i = 0; i < this.amount * 2; i++) {
-                if (i >= 8) this.fixa = new _Fixa.Fixa(this.images[i - 8], this.imagesPath);else this.fixa = new _Fixa.Fixa(this.images[i], this.imagesPath);
-                this.fixa.shuffle(this.images);
-                table += this.fixa.getHTML();
+        key: "generateCards",
+        value: function generateCards(level) {
+            var cards = [];
+            var i = void 0,
+                id = void 0;
+            for (i = 0, id = 0; i < level.images_amount; i++, id++) {
+                cards[id] = new _Fitxa.Fitxa(level.images[i], id, level.images_path);
+                cards[++id] = new _Fitxa.Fitxa(level.images[i], id, level.images_path);
             }
-            return table;
+            return cards;
+        }
+    }, {
+        key: "shuffleCards",
+        value: function shuffleCards(cards) {
+            var currentIndex = cards.length,
+                temporaryValue,
+                randomIndex;
+
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = cards[currentIndex];
+                cards[currentIndex] = cards[randomIndex];
+                cards[randomIndex] = temporaryValue;
+            }
+            return cards;
+        }
+    }, {
+        key: "generateTaulell",
+        value: function generateTaulell() {
+            return "\n            <div id=\"info\">\n                " + this.createTableInfo() + "\n            </div>\n            <div id=\"game\">\n                " + this.printCards() + "\n                \n            </div>\n        ";
+        }
+    }, {
+        key: "printCards",
+        value: function printCards() {
+            var cells = "";
+            var count = 0;
+            for (var i = 0; i < this.columns; i++) {
+                for (var j = 0; j < this.rows; j++) {
+                    cells += "\n                    " + this.cards[count].getHTML() + "\n                ";
+                    count++;
+                }
+            }
+            return cells;
+        }
+    }, {
+        key: "printTaulell",
+        value: function printTaulell() {
+            _Game.Game.getApp().innerHTML = this.table;
         }
     }, {
         key: "createTableInfo",
         value: function createTableInfo() {
             var table = "";
 
-            table += "<div class=\"item-info\">   \n        </div>";
+            table += "<div class=\"item-info\">Nivell: </div>\n        <div class=\"item-info\">Time</div>\n        <div class=\"item-info\">Punts</div>\n        <div class=\"item-info\">Back</div>\n        ";
 
             return table;
+        }
+    }, {
+        key: "flipCards",
+        value: function flipCards(time) {
+            console.log(this.cards);
+            this.cards.forEach(function (card, index) {
+                card.toogle();
+            });
         }
     }]);
 
@@ -231,50 +295,50 @@ var Taulell = exports.Taulell = function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.Fitxa = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Game = __webpack_require__(0);
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Fixa = exports.Fixa = function () {
-    function Fixa(imagen, imagesPath) {
-        _classCallCheck(this, Fixa);
+var Fitxa = exports.Fitxa = function () {
+    function Fitxa(imagen, id, imagesPath) {
+        _classCallCheck(this, Fitxa);
 
-        this.id = imagen.id;
+        this.id = id;
+        this.img_id = imagen.id;
         this.name = imagen.name;
         this.img_path = imagen.path;
         this.imagesPath = imagesPath;
-        console.log("Classe Fixa ---> " + imagesPath);
-    }
-    /*faceUp() {
         this.discovered = false;
-        this.faceUp();
-        this.faceDown();
-        // muestra imagen
-        return this.id;
-    }*/
+    }
 
-
-    _createClass(Fixa, [{
-        key: "shuffle",
-        value: function shuffle(imagen) {
-            var numElem = imagen.length;
-            while (numElem) {
-                var i = Math.floor(Math.random() * numElem--);
-                var t = imagen[numElem];
-                imagen[numElem] = imagen[i];
-                imagen[i] = t;
+    _createClass(Fitxa, [{
+        key: 'toogle',
+        value: function toogle() {
+            if (!this.discovered) {
+                this.getFitxa().classList.add('open');
+                this.discovered = true;
+            } else {
+                this.getFitxa().classList.remove('open');
+                this.discovered = false;
             }
-            return imagen;
         }
     }, {
-        key: "getHTML",
+        key: 'getFitxa',
+        value: function getFitxa() {
+            return document.getElementById(this.id);
+        }
+    }, {
+        key: 'getHTML',
         value: function getHTML() {
-            return "\n        <div id=\"" + this.id + "\"class=\"item-card\">\n            <img src=\"" + this.imagesPath + this.img_path + "\">\n        </div>\n        \n        ";
+            return '\n        <div class="item-card" id="' + this.id + '" key="' + this.img_id + '">\n            <img src="' + (this.imagesPath + this.img_path) + '" alt="' + this.name + '" />  \n        </div>\n            ';
         }
     }]);
 
-    return Fixa;
+    return Fitxa;
 }();
 
 /***/ })

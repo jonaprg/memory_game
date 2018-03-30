@@ -2,16 +2,17 @@ import { Taulell } from './Taulell';
 export class Game {
 
     constructor(level){
-       this.taulell = new Taulell(level);
-       this.getApp().innerHTML = `
-            <div id="info">${this.taulell.createTableInfo()}</div>
-            <div id="game">
-                ${this.taulell.createTableGame()}
-            </div>
-
-       `;
+       this.taulell = new Taulell(4, 4, level);
+       this.startGame();
     }
-    getApp(){
+    startGame() {
+        this.taulell.flipCards(5000);
+    }
+    check(fitxa1,fitxa2) {
+        return fitxa1.id === fitxa2.id;
+    }
+    static getApp(){
         return document.getElementById('app');
     }
+    
 }
