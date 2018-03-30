@@ -26,9 +26,10 @@ export class Fitxa {
     }
     getHTML() {
         return `
-        <div class="item-card" id="${this.id}" key="${this.img_id}">
-            <img src="${this.imagesPath + this.img_path}" alt="${this.name}" />  
-        </div>
+            <div class="item-card" id="${this.id}" key="${this.img_id}">
+                <img src="${this.imagesPath + this.img_path}" alt="${this.name}" />  
+            </div>
             `;
+            
     }
 }

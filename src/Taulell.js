@@ -74,9 +74,10 @@ export class Taulell {
         return table;
     }
     flipCards(time) {
-        console.log(this.cards);
+
         this.cards.forEach(function(card,index) { 
-             card.toogle();
+            console.log(card);
+            card.toogle();
         });
 
     }
