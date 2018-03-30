@@ -335,7 +335,7 @@ var Fitxa = exports.Fitxa = function () {
     }, {
         key: 'getHTML',
         value: function getHTML() {
-            return '\n            <div class="item-card" id="' + this.id + '" key="' + this.img_id + '">\n                <img src="' + (this.imagesPath + this.img_path) + '" alt="' + this.name + '" />  \n            </div>\n            ';
+            return '\n            <div class="item-card" id="' + this.id + '" key="' + this.img_id + '">\n                <img src="' + (this.imagesPath + this.img_path) + '" alt="' + this.name + '" />  \n            </div>\n            \n            ';
         }
     }]);
 
