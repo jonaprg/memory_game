@@ -122,7 +122,6 @@ export class Taulell {
         console.log("unmatched");
        /* fixa1.classList.add("unmatched");
         fixa2.classList.add("unmatched");
-        this.disable();
         setTimeout(function(){
             fixa1.classList.remove("open","unmatched");
             fixa2.classList.remove("open","unmatched");
@@ -130,20 +129,7 @@ export class Taulell {
         },1100);*/
     }
  
-    disable(){
-        Array.prototype.filter.call(cards, function(card){
-            card.classList.add('disabled');
-        });
-    }
-    enable(){
-        let matchedCard = document.getElementsByClassName("match")
-        Array.prototype.filter.call(cards, function(card){
-            card.classList.remove('disabled');
-            for(var i = 0; i < matchedCard.length; i++){
-                matchedCard[i].classList.add("disabled");
-            }
-        });
-    }
+    
    
 }
 

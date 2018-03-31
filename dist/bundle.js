@@ -334,30 +334,11 @@ var Taulell = exports.Taulell = function () {
             console.log("unmatched");
             /* fixa1.classList.add("unmatched");
              fixa2.classList.add("unmatched");
-             this.disable();
              setTimeout(function(){
                  fixa1.classList.remove("open","unmatched");
                  fixa2.classList.remove("open","unmatched");
                  enable();
              },1100);*/
-        }
-    }, {
-        key: "disable",
-        value: function disable() {
-            Array.prototype.filter.call(cards, function (card) {
-                card.classList.add('disabled');
-            });
-        }
-    }, {
-        key: "enable",
-        value: function enable() {
-            var matchedCard = document.getElementsByClassName("match");
-            Array.prototype.filter.call(cards, function (card) {
-                card.classList.remove('disabled');
-                for (var i = 0; i < matchedCard.length; i++) {
-                    matchedCard[i].classList.add("disabled");
-                }
-            });
         }
     }]);
 
