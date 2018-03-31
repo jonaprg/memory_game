@@ -6,7 +6,7 @@ export class Game {
        this.startGame();
     }
     startGame() {
-        this.taulell.flipCards(5000);
+        this.taulell.clickCards();
     }
     check(fitxa1,fitxa2) {
         return fitxa1.id === fitxa2.id;

@@ -92,7 +92,7 @@ var Game = exports.Game = function () {
     _createClass(Game, [{
         key: 'startGame',
         value: function startGame() {
-            this.taulell.flipCards(5000);
+            this.taulell.clickCards();
         }
     }, {
         key: 'check',
@@ -210,6 +210,7 @@ var Taulell = exports.Taulell = function () {
 
         this.table = this.generateTaulell();
         this.printTaulell();
+        this.openedCards = new Array();
     }
 
     _createClass(Taulell, [{
@@ -273,12 +274,89 @@ var Taulell = exports.Taulell = function () {
             return table;
         }
     }, {
-        key: "flipCards",
-        value: function flipCards(time) {
+        key: "displayCard",
+        value: function displayCard() {
+            this.classList.toggle("open");
+            this.classList.toggle("disabled");
+        }
+    }, {
+        key: "hasClass",
+        value: function hasClass(elem, className) {
+            return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+        }
+    }, {
+        key: "clickCards",
+        value: function clickCards() {
+            var _this = this;
 
-            this.cards.forEach(function (card, index) {
-                console.log(card);
-                card.toogle();
+            var clickCard = 0;
+
+            var _loop = function _loop(i) {
+                var card = document.getElementById(_this.cards[i].getFitxa());
+                card.addEventListener("click", _this.displayCard);
+                card.addEventListener("click", function () {
+                    if (card.classList.contains("open")) {
+                        var keyCard = card.getAttribute("key");
+                        this.openedCards.push(keyCard);
+
+                        var len = this.openedCards.length;
+                        if (len === 2) {
+                            //moveCounter();
+                            if (this.openedCards[0] === this.openedCards[1]) {
+                                this.matched();
+                            } else {
+                                this.unmatched();
+                            }
+                        }
+                    } else {
+                        console.log("doesnt has");
+                    }
+                }, false);
+                //this.cards[i].addEventListener("click", this.congratulations);
+            };
+
+            for (var i = 0; i < this.cards.length; i++) {
+                _loop(i);
+            }
+        }
+    }, {
+        key: "matched",
+        value: function matched() {
+            console.log("marched");
+            /*fixa1.classList.add("match", "disabled");
+            fixa2.classList.add("match", "disabled");
+            fixa1.classList.remove("open");
+            fixa2.classList.remove("open");*/
+        }
+    }, {
+        key: "unmatched",
+        value: function unmatched() {
+            console.log("unmatched");
+            /* fixa1.classList.add("unmatched");
+             fixa2.classList.add("unmatched");
+             this.disable();
+             setTimeout(function(){
+                 fixa1.classList.remove("open","unmatched");
+                 fixa2.classList.remove("open","unmatched");
+                 enable();
+             },1100);*/
+        }
+    }, {
+        key: "disable",
+        value: function disable() {
+            Array.prototype.filter.call(cards, function (card) {
+                card.classList.add('disabled');
+            });
+        }
+    }, {
+        key: "enable",
+        value: function enable() {
+            var matchedCard = document.getElementsByClassName("match");
+            Array.prototype.filter.call(cards, function (card) {
+                card.classList.remove('disabled');
+                for (var i = 0; i < matchedCard.length; i++) {
+                    matchedCard[i].classList.add("disabled");
+                }
             });
         }
     }]);
@@ -313,29 +391,22 @@ var Fitxa = exports.Fitxa = function () {
         this.name = imagen.name;
         this.img_path = imagen.path;
         this.imagesPath = imagesPath;
-        this.discovered = false;
     }
 
     _createClass(Fitxa, [{
-        key: 'toogle',
-        value: function toogle() {
-            if (!this.discovered) {
-                this.getFitxa().classList.add('open');
-                this.discovered = true;
-            } else {
-                this.getFitxa().classList.remove('open');
-                this.discovered = false;
-            }
-        }
-    }, {
-        key: 'getFitxa',
+        key: "getFitxa",
         value: function getFitxa() {
-            return document.getElementById(this.id);
+            return this.id;
         }
     }, {
-        key: 'getHTML',
+        key: "getImg_id",
+        value: function getImg_id() {
+            return this.img_id;
+        }
+    }, {
+        key: "getHTML",
         value: function getHTML() {
-            return '\n            <div class="item-card" id="' + this.id + '" key="' + this.img_id + '">\n                <img src="' + (this.imagesPath + this.img_path) + '" alt="' + this.name + '" />  \n            </div>\n            \n            ';
+            return "\n            <div class=\"item-card\" id=\"" + this.id + "\" key=\"" + this.img_id + "\" >\n                <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" />  \n            </div>\n            \n            ";
         }
     }]);
 
