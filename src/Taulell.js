@@ -17,6 +17,7 @@ export class Taulell {
         this.menu= this.createMenuPrincipal();
         this.printMenu();
         
+        
     }
     generateCards(level) {
         let cards = [];
