@@ -13,6 +13,9 @@ export class Taulell {
         
         this.table = this.generateTaulell();
         this.printTaulell();
+
+        this.menu= this.createMenuPrincipal();
+        this.printMenu();
         
     }
     generateCards(level) {
@@ -82,9 +85,25 @@ export class Taulell {
             <div class="item-info">
                 <h2>Back</h2>
             </div>
+            
         `;
         
         return table;
+    }
+
+    printMenu(){
+        Game.getApp().innerHTML = this.menu;
+    }
+    createMenuPrincipal() {
+        let menu = ``;
+       
+        menu +=  `
+            <div class="menu-principal"> 
+               <button type="button">Juga!</button> 
+            </div>
+            
+        `;
+        return menu;
     }
 }
 

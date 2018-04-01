@@ -152,7 +152,7 @@ var Game = exports.Game = function () {
                 alert('GUANYAT');
             }
         }
-         hasGuanyat(){
+          hasGuanyat(){
             let guanyat = true;
             this.taulell.cards.forEach((card)=>{
                 if(!card.discovered){
@@ -278,6 +278,9 @@ var Taulell = exports.Taulell = function () {
 
         this.table = this.generateTaulell();
         this.printTaulell();
+
+        this.menu = this.createMenuPrincipal();
+        this.printMenu();
     }
 
     _createClass(Taulell, [{
@@ -336,9 +339,22 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h2>Nivell</h2>\n                <h2>Facil</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Temps</h2>\n                <h2>00:00</h2> \n            </div>\n            <div class=\"item-info\">\n                <h2>Punts</h2>\n                <h2>0</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Back</h2>\n            </div>\n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h2>Nivell</h2>\n                <h2>Facil</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Temps</h2>\n                <h2>00:00</h2> \n            </div>\n            <div class=\"item-info\">\n                <h2>Punts</h2>\n                <h2>0</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Back</h2>\n            </div>\n            \n        ";
 
             return table;
+        }
+    }, {
+        key: "printMenu",
+        value: function printMenu() {
+            _Game.Game.getApp().innerHTML = this.menu;
+        }
+    }, {
+        key: "createMenuPrincipal",
+        value: function createMenuPrincipal() {
+            var menu = "";
+
+            menu += "\n            <div class=\"menu-principal\"> \n               <button type=\"button\">Juga!</button> \n            </div>\n            \n        ";
+            return menu;
         }
     }]);
 
