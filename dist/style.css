@@ -42,6 +42,13 @@ body {
 #titleGame {
     font-size: 50px;
 }
+
+/*BOTO JUGA*/
+.menu-principal{
+  background-color: greenyellow;
+  width: 30%;
+  height: 100px;
+}
 /* Game table */
 #game {
     width: 100%;
