@@ -65,8 +65,7 @@ export class Taulell {
         return cells;
     }
     printTaulell() {
-        
-        Game.getApp().innerHTML = this.table;
+        Game.getApp().innerHTML = this.table; 
     }
     createTableInfo() {
         let table = ``;
@@ -82,7 +81,7 @@ export class Taulell {
             </div>
             <div class="item-info">
                 <h3>Punts</h3>
-                <h3>0</h3>
+                <h3 id="punts">0</h3>
             </div>
             <div class="item-info">
                 <h3>Back</h3>
@@ -94,14 +93,15 @@ export class Taulell {
     }
 
     printMenu(){
-        Game.getApp().innerHTML = this.menu;
+        Game.getApp().innerHTML += this.menu;
     }
     createMenuPrincipal() {
+        console.log("Hello menu");
         let menu = ``;
        
         menu +=  `
             <div class="menu-principal"> 
-               <button type="button">Juga!</button> 
+               <button id="facil">Juga!</button> 
             </div>
             
         `;
