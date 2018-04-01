@@ -317,6 +317,9 @@ var Taulell = exports.Taulell = function () {
 
         this.table = this.generateTaulell();
         this.printTaulell();
+
+        this.menu = this.createMenuPrincipal();
+        this.printMenu();
     }
 
     _createClass(Taulell, [{
@@ -376,9 +379,22 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>Facil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3>0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>Facil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3>0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
 
             return table;
+        }
+    }, {
+        key: "printMenu",
+        value: function printMenu() {
+            _Game.Game.getApp().innerHTML = this.menu;
+        }
+    }, {
+        key: "createMenuPrincipal",
+        value: function createMenuPrincipal() {
+            var menu = "";
+
+            menu += "\n            <div class=\"menu-principal\"> \n               <button type=\"button\">Juga!</button> \n            </div>\n            \n        ";
+            return menu;
         }
     }]);
 
