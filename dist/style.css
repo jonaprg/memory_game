@@ -12,7 +12,7 @@ body {
 }
 /* APP */
 #app {
-    width: 100%;
+    width: 60%;
     padding: 5px;
     border-radius: 4px;
     display: flex;
@@ -54,7 +54,7 @@ body {
 }
 .item-card {
     height: 150px;
-    width: 185px;
+    width: 264px;
     margin: 0 5px 5px;
     background: #c7cac4;
     border-radius: 5px;
@@ -65,16 +65,16 @@ body {
 }
 .item-card.open {
 	transform: rotateY(0);
-	background: #78a544;
+	background: #93969b;
 	cursor: default;
 	animation-name: flipInY;
 	-webkit-backface-visibility: visible !important;
 	backface-visibility: visible !important;
 	animation-duration: .75s;
 }
-.deck .card.match {
+.item-card.match {
 	cursor: default;
-	background: #E5F720;
+	background: #78a544 ;
 	font-size: 33px;
 	animation-name: rubberBand;
 	-webkit-backface-visibility: visible !important;
@@ -82,12 +82,12 @@ body {
 	animation-duration: .75s;
 }
 
-.deck .card.unmatched {
+.item-card.unmatched {
 	animation-name: bounceIn;
 	-webkit-backface-visibility: visible !important;
 	backface-visibility: visible !important;
 	animation-duration: .75s;
-	background: #e2043b;
+	background: #ad3030;
 }
 .item-card.disabled {
 	pointer-events: none;
@@ -98,7 +98,7 @@ body {
     align-self: center;
     display: none;
 }
-.item-card.open img {
+.item-card.open img, .item-card.item-card.match img {
     display: block;
 }
 /* Info table */
@@ -117,7 +117,7 @@ body {
     width: 100%;
     text-align: center;
 }
-.item-info h3 {
+.item-info h2 {
     margin: 20px auto;
 }
 

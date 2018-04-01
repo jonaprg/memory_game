@@ -13,9 +13,7 @@ export class Taulell {
         
         this.table = this.generateTaulell();
         this.printTaulell();
-        this.openedCards = new Array();
         
-    
     }
     generateCards(level) {
         let cards = [];
@@ -68,68 +66,25 @@ export class Taulell {
     createTableInfo() {
         let table = ``;
        
-        table +=  `<div class="item-info">Nivell: </div>
-        <div class="item-info">Time</div>
-        <div class="item-info">Punts</div>
-        <div class="item-info">Back</div>
+        table +=  `
+            <div class="item-info"> 
+                <h2>Nivell</h2>
+                <h2>Facil</h2>
+            </div>
+            <div class="item-info">
+                <h2>Temps</h2>
+                <h2>00:00</h2> 
+            </div>
+            <div class="item-info">
+                <h2>Punts</h2>
+                <h2>0</h2>
+            </div>
+            <div class="item-info">
+                <h2>Back</h2>
+            </div>
         `;
         
         return table;
     }
-    displayCard(){
-        this.classList.toggle("open");
-        this.classList.toggle("disabled");
-    }
-    hasClass(elem, className) {
-        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-    }
-    clickCards() {
-        
-       let clickCard = 0;
-        for (let i = 0; i < this.cards.length; i++){
-            let card = document.getElementById(this.cards[i].getFitxa());
-            card.addEventListener("click", this.displayCard);
-            card.addEventListener("click", function() {
-                if(card.classList.contains("open")) {
-                    let keyCard = card.getAttribute("key");
-                    this.openedCards.push(keyCard);
-                    
-                    var len = this.openedCards.length;
-                    if(len === 2){
-                        //moveCounter();
-                        if(this.openedCards[0] === this.openedCards[1]){
-                            this.matched();
-                        } else {
-                            this.unmatched();
-                        }
-                    }
-                } else {
-                    console.log("doesnt has");
-                }
-            }, false);
-            //this.cards[i].addEventListener("click", this.congratulations);
-        }
-    }
-    matched(){
-        console.log("marched");
-        /*fixa1.classList.add("match", "disabled");
-        fixa2.classList.add("match", "disabled");
-        fixa1.classList.remove("open");
-        fixa2.classList.remove("open");*/
-    }
-    
-    unmatched(){
-        console.log("unmatched");
-       /* fixa1.classList.add("unmatched");
-        fixa2.classList.add("unmatched");
-        setTimeout(function(){
-            fixa1.classList.remove("open","unmatched");
-            fixa2.classList.remove("open","unmatched");
-            enable();
-        },1100);*/
-    }
- 
-    
-   
 }
 

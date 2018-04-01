@@ -90,17 +90,85 @@ var Game = exports.Game = function () {
     }
 
     _createClass(Game, [{
-        key: 'startGame',
+        key: "startGame",
         value: function startGame() {
-            this.taulell.clickCards();
+            var gameStarted = true;
+            var openedCards = new Array();
+            this.fitxaSelected1;
+            this.fitxaSelected2;
+            var that = this;
+            this.taulell.cards.forEach(function (val, idex) {
+                document.getElementById(val.id).addEventListener("click", val.displayCard);
+                document.getElementById(val.id).addEventListener("click", function () {
+                    if (!that.fitxaSelected1) that.fitxaSelected1 = val;else that.fitxaSelected2 = val;
+                    openedCards.push(val.img_id);
+                    if (openedCards.length === 2) {
+                        var fitxa1 = document.getElementById(that.fitxaSelected1.id);
+                        var fitxa2 = document.getElementById(that.fitxaSelected2.id);
+
+                        if (that.correctCard(that.fitxaSelected1, that.fitxaSelected2)) {
+                            that.matched(fitxa1, fitxa2);
+                            that.fitxaSelected1 = null;
+                            that.fitxaSelected2 = null;
+                            openedCards = new Array();
+                        } else {
+                            that.unmatched(fitxa1, fitxa2);
+                            that.fitxaSelected1 = null;
+                            that.fitxaSelected2 = null;
+                            openedCards = new Array();
+                        }
+                    }
+                });
+            });
         }
     }, {
-        key: 'check',
-        value: function check(fitxa1, fitxa2) {
-            return fitxa1.id === fitxa2.id;
+        key: "matched",
+        value: function matched(fitxa1, fitxa2) {
+            fitxa1.classList.add("match", "disabled");
+            fitxa2.classList.add("match", "disabled");
+            fitxa1.classList.remove("open");
+            fitxa2.classList.remove("open");
+        }
+    }, {
+        key: "unmatched",
+        value: function unmatched(fitxa1, fitxa2) {
+            fitxa1.classList.add("unmatched");
+            fitxa2.classList.add("unmatched");
+            setTimeout(function () {
+                fitxa1.classList.remove("open", "unmatched", "disabled");
+                fitxa2.classList.remove("open", "unmatched", "disabled");
+            }, 1500);
+        }
+        /*
+        finalitzarTorn(){
+            if(!this.check(this.fitxaSelected1, this.fitxaSelected2)){
+                this.fitxaSelected1.toggle();
+                this.fitxaSelected2.toggle();
+            }
+            this.fitxaSelected1 = null;
+            this.fitxaSelected2 = null;
+            this.fitxasDescobertes = 0;
+            if(this.hasGuanyat()){
+                alert('GUANYAT');
+            }
+        }
+         hasGuanyat(){
+            let guanyat = true;
+            this.taulell.cards.forEach((card)=>{
+                if(!card.discovered){
+                    guanyat = false;
+                }
+            });
+            return guanyat;
+        }*/
+
+    }, {
+        key: "correctCard",
+        value: function correctCard(fitxa1, fitxa2) {
+            return fitxa1.name === fitxa2.name;
         }
     }], [{
-        key: 'getApp',
+        key: "getApp",
         value: function getApp() {
             return document.getElementById('app');
         }
@@ -210,7 +278,6 @@ var Taulell = exports.Taulell = function () {
 
         this.table = this.generateTaulell();
         this.printTaulell();
-        this.openedCards = new Array();
     }
 
     _createClass(Taulell, [{
@@ -269,76 +336,9 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "<div class=\"item-info\">Nivell: </div>\n        <div class=\"item-info\">Time</div>\n        <div class=\"item-info\">Punts</div>\n        <div class=\"item-info\">Back</div>\n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h2>Nivell</h2>\n                <h2>Facil</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Temps</h2>\n                <h2>00:00</h2> \n            </div>\n            <div class=\"item-info\">\n                <h2>Punts</h2>\n                <h2>0</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Back</h2>\n            </div>\n        ";
 
             return table;
-        }
-    }, {
-        key: "displayCard",
-        value: function displayCard() {
-            this.classList.toggle("open");
-            this.classList.toggle("disabled");
-        }
-    }, {
-        key: "hasClass",
-        value: function hasClass(elem, className) {
-            return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-        }
-    }, {
-        key: "clickCards",
-        value: function clickCards() {
-            var _this = this;
-
-            var clickCard = 0;
-
-            var _loop = function _loop(i) {
-                var card = document.getElementById(_this.cards[i].getFitxa());
-                card.addEventListener("click", _this.displayCard);
-                card.addEventListener("click", function () {
-                    if (card.classList.contains("open")) {
-                        var keyCard = card.getAttribute("key");
-                        this.openedCards.push(keyCard);
-
-                        var len = this.openedCards.length;
-                        if (len === 2) {
-                            //moveCounter();
-                            if (this.openedCards[0] === this.openedCards[1]) {
-                                this.matched();
-                            } else {
-                                this.unmatched();
-                            }
-                        }
-                    } else {
-                        console.log("doesnt has");
-                    }
-                }, false);
-                //this.cards[i].addEventListener("click", this.congratulations);
-            };
-
-            for (var i = 0; i < this.cards.length; i++) {
-                _loop(i);
-            }
-        }
-    }, {
-        key: "matched",
-        value: function matched() {
-            console.log("marched");
-            /*fixa1.classList.add("match", "disabled");
-            fixa2.classList.add("match", "disabled");
-            fixa1.classList.remove("open");
-            fixa2.classList.remove("open");*/
-        }
-    }, {
-        key: "unmatched",
-        value: function unmatched() {
-            console.log("unmatched");
-            /* fixa1.classList.add("unmatched");
-             fixa2.classList.add("unmatched");
-             setTimeout(function(){
-                 fixa1.classList.remove("open","unmatched");
-                 fixa2.classList.remove("open","unmatched");
-                 enable();
-             },1100);*/
         }
     }]);
 
@@ -385,9 +385,15 @@ var Fitxa = exports.Fitxa = function () {
             return this.img_id;
         }
     }, {
+        key: "displayCard",
+        value: function displayCard() {
+            document.getElementById(this.id).classList.toggle("open");
+            document.getElementById(this.id).classList.toggle("disabled");
+        }
+    }, {
         key: "getHTML",
         value: function getHTML() {
-            return "\n            <div class=\"item-card\" id=\"" + this.id + "\" key=\"" + this.img_id + "\" >\n                <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" />  \n            </div>\n            \n            ";
+            return "\n            <div class=\"item-card\" id=\"" + this.id + "\" name=\"" + this.img_id + "\" >\n                <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" />  \n            </div>\n            \n            ";
         }
     }]);
 
