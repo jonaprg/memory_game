@@ -61,6 +61,7 @@ export class Taulell {
         return cells;
     }
     printTaulell() {
+        
         Game.getApp().innerHTML = this.table;
     }
     createTableInfo() {
@@ -68,19 +69,19 @@ export class Taulell {
        
         table +=  `
             <div class="item-info"> 
-                <h2>Nivell</h2>
-                <h2>Facil</h2>
+                <h3>Nivell</h3>
+                <h3>Facil</h3>
             </div>
             <div class="item-info">
-                <h2>Temps</h2>
-                <h2>00:00</h2> 
+                <h3>Temps</h3>
+                <h3 id="time"></h3> 
             </div>
             <div class="item-info">
-                <h2>Punts</h2>
-                <h2>0</h2>
+                <h3>Punts</h3>
+                <h3>0</h3>
             </div>
             <div class="item-info">
-                <h2>Back</h2>
+                <h3>Back</h3>
             </div>
         `;
         

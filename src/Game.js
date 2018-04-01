@@ -11,6 +11,7 @@ export class Game {
         this.fitxaSelected1;
         this.fitxaSelected2;
         let that = this;
+        that.startTimer(60, 1);
         this.taulell.cards.forEach(function(val,idex){
             document.getElementById(val.id).addEventListener("click", val.displayCard);
             document.getElementById(val.id).addEventListener("click", function() {
@@ -36,6 +37,38 @@ export class Game {
                 }
             });
         });
+    }
+    startTimer(second, minute) {
+
+        let timer = document.getElementById("time");
+        let interval;
+        
+        interval = setInterval(function(){
+        timer.innerHTML = minute+" mins "+second+" secs";
+        second--;
+        if(second == 0){
+            minute--;
+            second=60;
+        }
+        if(minute == 0){
+            this.endGame();
+        }
+        },1000);   
+    }
+    endGame() {
+        console.log("Finsih");
+    }
+    moveCounter(){
+        let moves = 0;
+        moves++;
+        document.getElementById().innerHTML = moves;
+        //start timer on first click
+        if(moves == 1){
+            second = 0;
+            minute = 0; 
+            hour = 0;
+            startTimer();
+        }
     }
     matched(fitxa1, fitxa2) {
         fitxa1.classList.add("match", "disabled");

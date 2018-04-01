@@ -97,6 +97,7 @@ var Game = exports.Game = function () {
             this.fitxaSelected1;
             this.fitxaSelected2;
             var that = this;
+            that.startTimer(60, 1);
             this.taulell.cards.forEach(function (val, idex) {
                 document.getElementById(val.id).addEventListener("click", val.displayCard);
                 document.getElementById(val.id).addEventListener("click", function () {
@@ -120,6 +121,44 @@ var Game = exports.Game = function () {
                     }
                 });
             });
+        }
+    }, {
+        key: "startTimer",
+        value: function startTimer(second, minute) {
+
+            var timer = document.getElementById("time");
+            var interval = void 0;
+
+            interval = setInterval(function () {
+                timer.innerHTML = minute + " mins " + second + " secs";
+                second--;
+                if (second == 0) {
+                    minute--;
+                    second = 60;
+                }
+                if (minute == 0) {
+                    this.endGame();
+                }
+            }, 1000);
+        }
+    }, {
+        key: "endGame",
+        value: function endGame() {
+            console.log("Finsih");
+        }
+    }, {
+        key: "moveCounter",
+        value: function moveCounter() {
+            var moves = 0;
+            moves++;
+            document.getElementById().innerHTML = moves;
+            //start timer on first click
+            if (moves == 1) {
+                second = 0;
+                minute = 0;
+                hour = 0;
+                startTimer();
+            }
         }
     }, {
         key: "matched",
@@ -329,6 +368,7 @@ var Taulell = exports.Taulell = function () {
     }, {
         key: "printTaulell",
         value: function printTaulell() {
+
             _Game.Game.getApp().innerHTML = this.table;
         }
     }, {
@@ -336,7 +376,7 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h2>Nivell</h2>\n                <h2>Facil</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Temps</h2>\n                <h2>00:00</h2> \n            </div>\n            <div class=\"item-info\">\n                <h2>Punts</h2>\n                <h2>0</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Back</h2>\n            </div>\n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>Facil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3>0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n        ";
 
             return table;
         }
