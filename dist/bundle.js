@@ -391,7 +391,7 @@ var Taulell = exports.Taulell = function () {
             console.log("Hello menu");
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\">\n                <h3>Tria el nivell</h3> \n                <button id=\"facil\">Facil</button> \n                <button id=\"mitja\">Mitj\xE0</button> \n                <button id=\"dificil\">D\xEDficil</button> \n            </div>\n        ";
+            menu += "\n            <div class=\"menu-principal\">\n                <h3>Tria el nivell</h3> \n                <button class=\"play\" id=\"facil\">Facil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">D\xEDficil</button> \n            </div>\n        ";
             return menu;
         }
     }]);

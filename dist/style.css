@@ -51,7 +51,7 @@ body {
 }
 
 /*BOTO JUGA*/
-#play{
+.play{
    width: 100px;
    height: 70px;
    background-color: greenyellow;

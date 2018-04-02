@@ -102,9 +102,9 @@ export class Taulell {
         menu +=  `
             <div class="menu-principal">
                 <h3>Tria el nivell</h3> 
-                <button id="facil">Facil</button> 
-                <button id="mitja">Mitjà</button> 
-                <button id="dificil">Díficil</button> 
+                <button class="play" id="facil">Facil</button> 
+                <button class="play" id="mitja">Mitjà</button> 
+                <button class="play" id="dificil">Díficil</button> 
             </div>
         `;
         return menu;
