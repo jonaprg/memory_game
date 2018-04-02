@@ -22,7 +22,7 @@ export class Game {
         this.fitxaSelected1;
         this.fitxaSelected2;
         let that = this;
-        that.startTimer(60, 0);
+        that.startTimer(5, 0);
         this.taulell.cards.forEach(function(val,idex){
             document.getElementById(val.id).addEventListener("click", val.displayCard);
             document.getElementById(val.id).addEventListener("click", function() {
@@ -58,13 +58,16 @@ export class Game {
         
         interval = setInterval(function(){
         timer.innerHTML = minute+" mins "+second+" secs";
+        console.log(minute + "min");
+        console.log(second + "sec");
         second--;
         if(second === 0){
             minute--;
             second=60;
         }
+        
         if(minute === 0 && second === 0){
-            
+           
             second = 0;
             minute = 0;
             this.endGame();

@@ -10,6 +10,13 @@ body {
     height: 100vh;
     display: flex;
 }
+/* Display */
+ .display-none {
+     display: none;
+ }
+ .display-flex {
+     display: flex;
+ }
 /* APP */
 #app {
     width: 60%;
