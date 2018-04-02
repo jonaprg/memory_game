@@ -7,12 +7,13 @@ export class Timer {
         this.levelFacil = level.levelFacil;
         this.levelMedio = level.levelMedio;
         this.levelDificil = level.levelDificil;
-        console.log(level);
+
+        this.interval = null;
     }
     startTimer(duration) {
         let temps = duration, minuts, segons;
-        let that = this;
-        setInterval(function () {
+       
+        this.interval = setInterval(function () {
             minuts = parseInt(temps / 60, 10)
             segons = parseInt(temps % 60, 10);
     
@@ -26,5 +27,8 @@ export class Timer {
                 return true;
             }
         }, 1000);
+    }
+    clearSetInterval() {
+        clearInterval(this.interval);
     }
 }

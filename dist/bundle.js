@@ -90,9 +90,7 @@ var Game = exports.Game = function () {
         this.taulell = new _Taulell.Taulell(4, 4, level);
         this.timer = new _Timer.Timer(level);
         this.startGame();
-        this.botoBack;
-
-        //this.winGame();
+        this.openedCards = new Array();
     }
 
     _createClass(Game, [{
@@ -101,6 +99,7 @@ var Game = exports.Game = function () {
             var _this = this;
 
             var that = this;
+
             document.getElementById("lvl_facil").addEventListener('click', function (evt) {
                 return _this.startGameByLevel(_this.timer.levelFacil, _this.timer.timerFacil);
             });
@@ -110,31 +109,29 @@ var Game = exports.Game = function () {
             document.getElementById("lvl_dificil").addEventListener('click', function (evt) {
                 return _this.startGameByLevel(_this.timer.levelDificil, _this.timer.timerDificil);
             });
+            this.botoBack();
         }
     }, {
         key: 'startGameByLevel',
-        value: function startGameByLevel(nivell, timer) {
+        value: function startGameByLevel(nivell, duration) {
 
             document.getElementById("game").classList.add("display-flex");
             document.getElementById("info").classList.add("display-flex");
             document.getElementById("menu-principal").classList.add("display-none");
             document.getElementById("nivell").innerHTML = nivell;
-
+            this.timer.startTimer(duration);
             this.taulell.flipCards(2000);
             var punts = 0;
-            var openedCards = new Array();
             this.fitxaSelected1;
             this.fitxaSelected2;
             var that = this;
-            this.timer.startTimer(timer);
 
             this.taulell.cards.forEach(function (val, index) {
                 document.getElementById(val.id).addEventListener("click", val.displayCard);
                 document.getElementById(val.id).addEventListener("click", function () {
                     if (!that.fitxaSelected1) that.fitxaSelected1 = val;else that.fitxaSelected2 = val;
-                    openedCards.push(val.img_id);
-
-                    if (openedCards.length === 2) {
+                    that.openedCards.push(val.img_id);
+                    if (that.openedCards.length === 2) {
                         var fitxa1 = document.getElementById(that.fitxaSelected1.id);
                         var fitxa2 = document.getElementById(that.fitxaSelected2.id);
                         if (that.correctCard(that.fitxaSelected1, that.fitxaSelected2)) {
@@ -142,13 +139,15 @@ var Game = exports.Game = function () {
                             that.matched(fitxa1, fitxa2);
                             that.fitxaSelected1 = null;
                             that.fitxaSelected2 = null;
-                            openedCards = new Array();
+                            that.openedCards = new Array();
                         } else {
                             that.unmatched(fitxa1, fitxa2);
                             that.fitxaSelected1 = null;
                             that.fitxaSelected2 = null;
-                            openedCards = new Array();
+                            that.openedCards = new Array();
                         }
+                        console.log("AFTER");
+                        console.log(that.openedCards);
                     }
                     document.getElementById("punts").innerHTML = punts;
                 });
@@ -164,26 +163,29 @@ var Game = exports.Game = function () {
     }, {
         key: 'botoBack',
         value: function botoBack() {
+            var that = this;
             document.getElementById("back").addEventListener("click", function () {
-                var menu = document.getElementById("menu-principal");
-                menu.classList.add("display-flex");
-                var taulell = document.getElementById("game");
-                taulell.classList.add("display-none");
-                var infor = documet.getElementById("info");
-                infor.classList - add("display-none");
+                document.getElementById("menu-principal").classList.remove("display-none");
+                document.getElementById("game").classList.remove("display-flex");
+                document.getElementById("info").classList.remove("display-flex");
+                that.timer.clearSetInterval();
+                that.restartGame();
             });
         }
     }, {
         key: 'restartGame',
         value: function restartGame() {
+            ;
             this.taulell.cards.forEach(function (val, index) {
                 document.getElementById(val.id).classList.remove("open", "match", "disabled");
             });
+
+            window.location.reload(true);
         }
     }, {
         key: 'winGame',
         value: function winGame() {
-            console.log("Hello");
+
             this.taulell.cards.forEach(function (val, index) {});
         }
     }, {
@@ -208,13 +210,6 @@ var Game = exports.Game = function () {
         key: 'correctCard',
         value: function correctCard(fitxa1, fitxa2) {
             return fitxa1.name === fitxa2.name;
-        }
-    }, {
-        key: 'botoBack',
-        value: function botoBack() {
-            document.getElementById("back").addEventListener("click", this.botoBack);
-            var boto = document.getElementById("back");
-            boto.classList.add("display-none");
         }
     }], [{
         key: 'getApp',
@@ -501,7 +496,8 @@ var Timer = exports.Timer = function () {
         this.levelFacil = level.levelFacil;
         this.levelMedio = level.levelMedio;
         this.levelDificil = level.levelDificil;
-        console.log(level);
+
+        this.interval = null;
     }
 
     _createClass(Timer, [{
@@ -510,8 +506,8 @@ var Timer = exports.Timer = function () {
             var temps = duration,
                 minuts = void 0,
                 segons = void 0;
-            var that = this;
-            setInterval(function () {
+
+            this.interval = setInterval(function () {
                 minuts = parseInt(temps / 60, 10);
                 segons = parseInt(temps % 60, 10);
 
@@ -525,6 +521,11 @@ var Timer = exports.Timer = function () {
                     return true;
                 }
             }, 1000);
+        }
+    }, {
+        key: "clearSetInterval",
+        value: function clearSetInterval() {
+            clearInterval(this.interval);
         }
     }]);
 
