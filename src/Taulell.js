@@ -101,7 +101,7 @@ export class Taulell {
        
         menu +=  `
             <div class="menu-principal">
-                <h3>Tria el nivell</h3> 
+                <h3>Escull el nivell</h3> 
                 <button class="play" id="facil">Fàcil</button> 
                 <button class="play" id="mitja">Mitjà</button> 
                 <button class="play" id="dificil">Difícil</button> 
