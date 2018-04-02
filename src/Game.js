@@ -8,7 +8,7 @@ export class Game {
        this.startGame();
        this.botoBack();
       
-       
+       //this.winGame();
     }
     startGame() {
         let that = this;
@@ -21,7 +21,6 @@ export class Game {
     }
     startGameByLevel(nivell, timer) {
         
-        console.log("EGKLGFOSD");
         document.getElementById("game").classList.add("display-flex");
         document.getElementById("info").classList.add("display-flex"); 
         document.getElementById("menu-principal").classList.add("display-none");
@@ -59,7 +58,7 @@ export class Game {
                         openedCards = new Array();
                     }
                 }
-                document.getElementById("punts").textContent = punts;
+                document.getElementById("punts").innerHTML = punts;
             });
         });
     }
@@ -68,8 +67,20 @@ export class Game {
         if(max !== null || max !== 0) punts += max; 
         return punts;
     }
+    botoBack(){
+        document.getElementById("back").addEventListener("click",function(){
+        var menu = document.getElementById("menu-principal");
+        menu.classList.add("display-flex");
+        var taulell = document.getElementById("game");
+        taulell.classList.add("display-none");
+        var infor = documet.getElementById("info");
+        infor.classList-add("display-none");
+        });
+    }
     restartGame() {
-
+        this.taulell.cards.forEach(function(val,index){
+            document.getElementById(val.id).classList.remove("open", "match", "disabled");
+        });
     }
     winGame() {
         console.log("Hello");

@@ -139,6 +139,9 @@ body {
     display: block;
 }
 
+<<<<<<< HEAD
+
+=======
 #back{
     width: 30%;
     height: 30px;
@@ -147,7 +150,16 @@ body {
     border: 1px solid black;
     cursor: pointer;
 }
+>>>>>>> d970455588ca0a04c78404069479627c0cdcd405
 /* Info table */
+#back{
+    width: 30%;
+    height: 30px;
+    background-color: #9DDC5A;
+    font-size: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+}
 #info{
     width: 100%;
     display: none;

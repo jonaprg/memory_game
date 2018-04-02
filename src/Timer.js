@@ -2,7 +2,7 @@ export class Timer {
 
     constructor(level) {
         this.timerFacil = level.timerFacil;
-        this.timerMitja = level.timerMitja;
+        this.timerMitja = level.timerMedio;
         this.timerDificil = level.timerDificil;
         this.levelFacil = level.levelFacil;
         this.levelMedio = level.levelMedio;
