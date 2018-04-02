@@ -67,9 +67,6 @@ body {
 #menu-principal{
     width: 30%;
     height: 250px;
-    display: flex;
-    max-width: 480px;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin: auto;
@@ -80,6 +77,7 @@ body {
     position: absolute;
     top: 40%;
 }
+
 
 /* Game table */
 #game {
@@ -139,6 +137,15 @@ body {
 }
 .item-card.open img, .item-card.item-card.match img {
     display: block;
+}
+
+#back{
+    width: 30%;
+    height: 30px;
+    background-color: #9DDC5A;
+    font-size: 20px;
+    border: 1px solid black;
+    cursor: pointer;
 }
 /* Info table */
 #info{

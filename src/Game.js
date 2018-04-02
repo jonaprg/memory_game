@@ -6,6 +6,7 @@ export class Game {
        this.taulell = new Taulell(4, 4, level);
        this.timer = new Timer(level);
        this.startGame();
+       this.botoBack
       
        
     }
@@ -97,5 +98,13 @@ export class Game {
     static getApp(){
         return document.getElementById('app');
     }
+
+    botoBack(){
+        document.getElementById("back").addEventListener("click",this.botoBack);
+        var boto = document.getElementById("back");
+        boto.classList.add("display-none");
+    }
+
+  
     
 }
