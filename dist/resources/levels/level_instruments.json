@@ -1,4 +1,7 @@
 {
+    "level_facil" : "facil",
+    "level_medio" : "medio",
+    "level_dificil" : "dificil",
     "images_amount" : 8,
     "images_path": "resources/img/",
     "images": [

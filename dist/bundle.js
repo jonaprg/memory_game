@@ -86,17 +86,33 @@ var Game = exports.Game = function () {
         _classCallCheck(this, Game);
 
         this.taulell = new _Taulell.Taulell(4, 4, level);
-        this.startGame();
+        this.startGameFacil();
+        this.levelFacil = level.level_facil;
+        this.levelMedio = level.level_medio;
+        this.levelDificil = level.level_dificil;
     }
 
     _createClass(Game, [{
-        key: "startGame",
+        key: 'startGameFacil',
+        value: function startGameFacil() {
+            var _this = this;
+
+            document.getElementById("facil").addEventListener('click', function (evt) {
+                return _this.startGame();
+            });
+        }
+    }, {
+        key: 'startGame',
         value: function startGame() {
+            document.getElementById("game").style.display = "flex";
+            document.getElementById("info").style.display = "flex";
+
             var gameStarted = true;
             var openedCards = new Array();
             this.fitxaSelected1;
             this.fitxaSelected2;
             var that = this;
+            that.startTimer(60, 0);
             this.taulell.cards.forEach(function (val, idex) {
                 document.getElementById(val.id).addEventListener("click", val.displayCard);
                 document.getElementById(val.id).addEventListener("click", function () {
@@ -107,6 +123,7 @@ var Game = exports.Game = function () {
                         var fitxa2 = document.getElementById(that.fitxaSelected2.id);
 
                         if (that.correctCard(that.fitxaSelected1, that.fitxaSelected2)) {
+                            that.moveCounter();
                             that.matched(fitxa1, fitxa2);
                             that.fitxaSelected1 = null;
                             that.fitxaSelected2 = null;
@@ -122,7 +139,47 @@ var Game = exports.Game = function () {
             });
         }
     }, {
-        key: "matched",
+        key: 'startTimer',
+        value: function startTimer(second, minute) {
+
+            var timer = document.getElementById("time");
+            var interval = void 0;
+
+            interval = setInterval(function () {
+                timer.innerHTML = minute + " mins " + second + " secs";
+                second--;
+                if (second === 0) {
+                    minute--;
+                    second = 60;
+                }
+                if (minute === 0 && second === 0) {
+
+                    second = 0;
+                    minute = 0;
+                    this.endGame();
+                }
+            }, 1000);
+        }
+    }, {
+        key: 'endGame',
+        value: function endGame() {
+            console.log("Finsih");
+        }
+    }, {
+        key: 'moveCounter',
+        value: function moveCounter() {
+            var moves = 0;
+            moves++;
+            document.getElementById("punts").innerHTML = moves;
+        }
+    }, {
+        key: 'restartGame',
+        value: function restartGame() {}
+    }, {
+        key: 'winGame',
+        value: function winGame() {}
+    }, {
+        key: 'matched',
         value: function matched(fitxa1, fitxa2) {
             fitxa1.classList.add("match", "disabled");
             fitxa2.classList.add("match", "disabled");
@@ -130,7 +187,7 @@ var Game = exports.Game = function () {
             fitxa2.classList.remove("open");
         }
     }, {
-        key: "unmatched",
+        key: 'unmatched',
         value: function unmatched(fitxa1, fitxa2) {
             fitxa1.classList.add("unmatched");
             fitxa2.classList.add("unmatched");
@@ -139,36 +196,13 @@ var Game = exports.Game = function () {
                 fitxa2.classList.remove("open", "unmatched", "disabled");
             }, 1500);
         }
-        /*
-        finalitzarTorn(){
-            if(!this.check(this.fitxaSelected1, this.fitxaSelected2)){
-                this.fitxaSelected1.toggle();
-                this.fitxaSelected2.toggle();
-            }
-            this.fitxaSelected1 = null;
-            this.fitxaSelected2 = null;
-            this.fitxasDescobertes = 0;
-            if(this.hasGuanyat()){
-                alert('GUANYAT');
-            }
-        }
-          hasGuanyat(){
-            let guanyat = true;
-            this.taulell.cards.forEach((card)=>{
-                if(!card.discovered){
-                    guanyat = false;
-                }
-            });
-            return guanyat;
-        }*/
-
     }, {
-        key: "correctCard",
+        key: 'correctCard',
         value: function correctCard(fitxa1, fitxa2) {
             return fitxa1.name === fitxa2.name;
         }
     }], [{
-        key: "getApp",
+        key: 'getApp',
         value: function getApp() {
             return document.getElementById('app');
         }
@@ -339,21 +373,22 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h2>Nivell</h2>\n                <h2>Facil</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Temps</h2>\n                <h2>00:00</h2> \n            </div>\n            <div class=\"item-info\">\n                <h2>Punts</h2>\n                <h2>0</h2>\n            </div>\n            <div class=\"item-info\">\n                <h2>Back</h2>\n            </div>\n            \n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>Facil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
 
             return table;
         }
     }, {
         key: "printMenu",
         value: function printMenu() {
-            _Game.Game.getApp().innerHTML = this.menu;
+            _Game.Game.getApp().innerHTML += this.menu;
         }
     }, {
         key: "createMenuPrincipal",
         value: function createMenuPrincipal() {
+            console.log("Hello menu");
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\"> \n               <button type=\"button\" id=\"boto\">Juga!</button> \n            </div>\n        ";
+            menu += "\n            <div class=\"menu-principal\"> \n               <button id=\"play\">Juga!</button> \n            </div>\n        ";
             return menu;
         }
     }]);

@@ -44,16 +44,16 @@ body {
 }
 
 /*BOTO JUGA*/
-#boto{
-   width: 30%;
-   height: 50px;
+#play{
+   width: 100px;
+   height: 70px;
    background-color: greenyellow;
 }
 /* Game table */
 #game {
     width: 100%;
     padding: 1rem;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: space-around;
     background: #29422a;
@@ -111,7 +111,7 @@ body {
 /* Info table */
 #info{
     width: 100%;
-    display: flex;
+    display: none;
     padding: 1rem;
     background: #29422a;
     box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
@@ -124,7 +124,7 @@ body {
     width: 100%;
     text-align: center;
 }
-.item-info h2 {
+.item-info h3 {
     margin: 20px auto;
 }
 

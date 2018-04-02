@@ -65,26 +65,26 @@ export class Taulell {
         return cells;
     }
     printTaulell() {
-        Game.getApp().innerHTML = this.table;
+        Game.getApp().innerHTML = this.table; 
     }
     createTableInfo() {
         let table = ``;
        
         table +=  `
             <div class="item-info"> 
-                <h2>Nivell</h2>
-                <h2>Facil</h2>
+                <h3>Nivell</h3>
+                <h3>Facil</h3>
             </div>
             <div class="item-info">
-                <h2>Temps</h2>
-                <h2>00:00</h2> 
+                <h3>Temps</h3>
+                <h3 id="time"></h3> 
             </div>
             <div class="item-info">
-                <h2>Punts</h2>
-                <h2>0</h2>
+                <h3>Punts</h3>
+                <h3 id="punts">0</h3>
             </div>
             <div class="item-info">
-                <h2>Back</h2>
+                <h3>Back</h3>
             </div>
             
         `;
@@ -93,14 +93,15 @@ export class Taulell {
     }
 
     printMenu(){
-        Game.getApp().innerHTML = this.menu;
+        Game.getApp().innerHTML += this.menu;
     }
     createMenuPrincipal() {
+        console.log("Hello menu");
         let menu = ``;
        
         menu +=  `
             <div class="menu-principal"> 
-               <button type="button" id="boto">Juga!</button> 
+               <button id="play">Juga!</button> 
             </div>
         `;
         return menu;
