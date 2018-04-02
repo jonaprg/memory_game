@@ -50,11 +50,33 @@ body {
     font-size: 50px;
 }
 
-/*BOTO JUGA*/
+/*MENU PRINCIPAL*/
 .play{
    width: 100px;
    height: 70px;
    background-color: greenyellow;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: auto;
+   flex-direction: column;
+   font-size:15px;
+   font-weight: bold;
+}
+
+.menu-principal{
+    width: 30%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.menu-principal h3{
+    text-align: center;
+    position: absolute;
+    top: 40%;
 }
 /* Game table */
 #game {
