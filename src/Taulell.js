@@ -1,5 +1,5 @@
 import { Fitxa } from "./Fitxa";
-import { Game } from './Game.js';
+import { Game } from "./Game";
 
 
 export class Taulell {
@@ -73,18 +73,19 @@ export class Taulell {
         table +=  `
             <div class="item-info"> 
                 <h3>Nivell</h3>
-                <h3>Fàcil</h3>
+                <h3 id="nivell"></h3>
             </div>
             <div class="item-info">
                 <h3>Temps</h3>
-                <h3 id="time"></h3> 
+                <h3 id="time">00:00</h3> 
             </div>
             <div class="item-info">
                 <h3>Punts</h3>
                 <h3 id="punts">0</h3>
             </div>
             <div class="item-info">
-                <h3>Back</h3>
+                <h3>Tornar</h3>
+                <button id="back"><</button>
             </div>
             
         `;
@@ -96,18 +97,29 @@ export class Taulell {
         Game.getApp().innerHTML += this.menu;
     }
     createMenuPrincipal() {
-        console.log("Hello menu");
         let menu = ``;
        
         menu +=  `
-            <div class="menu-principal">
-                <h3>Escull el nivell</h3> 
-                <button class="play" id="facil">Fàcil</button> 
-                <button class="play" id="mitja">Mitjà</button> 
-                <button class="play" id="dificil">Difícil</button> 
+            <div id="menu-principal">
+                <h2>Escull el nivell</h2> 
+                <button class="play" id="lvl_facil">Fàcil</button> 
+                <button class="play" id="lvl_medio">Mitjà</button> 
+                <button class="play" id="lvl_dificil">Difícil</button> 
             </div>
         `;
         return menu;
+    }
+    flipCards (time) {
+        this.cards.forEach(function(card,index) { 
+             document.getElementById(card.id).classList.toggle("open");
+             document.getElementById(card.id).classList.toggle("disabled");
+        });
+        setTimeout(() => {
+            this.cards.forEach(function(card,index) { 
+                document.getElementById(card.id).classList.toggle("open");
+                document.getElementById(card.id).classList.toggle("disabled");
+           });
+        }, time);
     }
 }
 

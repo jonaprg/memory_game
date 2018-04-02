@@ -1,40 +1,51 @@
 import { Taulell } from './Taulell';
+import { Timer } from './Timer';
 export class Game {
 
     constructor(level){
        this.taulell = new Taulell(4, 4, level);
-       this.startGameFacil();
-       this.levelFacil = level.level_facil;
-       this.levelMedio = level.level_medio;
-       this.levelDificil = level.level_dificil;
-    }
-    startGameFacil() {
-        
-        document.getElementById("facil").addEventListener('click', evt => this.startGame())
-        
+       this.timer = new Timer(level);
+       this.startGame();
+      
+       
     }
     startGame() {
-        document.getElementById("game").style.display = "flex";
-        document.getElementById("info").style.display = "flex";
+        let that = this;
+        document.getElementById("lvl_facil").addEventListener('click', 
+            evt => this.startGameByLevel(this.timer.levelFacil, this.timer.timerFacil))
+        document.getElementById("lvl_medio").addEventListener('click', 
+            evt => this.startGameByLevel(this.timer.levelMedio, this.timer.timerMitja))
+        document.getElementById("lvl_dificil").addEventListener('click', 
+            evt => this.startGameByLevel(this.timer.levelDificil, this.timer.timerDificil))
+    }
+    startGameByLevel(nivell, timer) {
         
-        let gameStarted = true;  
+        console.log("EGKLGFOSD");
+        document.getElementById("game").classList.add("display-flex");
+        document.getElementById("info").classList.add("display-flex"); 
+        document.getElementById("menu-principal").classList.add("display-none");
+        document.getElementById("nivell").innerHTML = nivell;
+
+        this.taulell.flipCards(2000);
+        let punts = 0;
         let openedCards = new Array();
         this.fitxaSelected1;
         this.fitxaSelected2;
         let that = this;
-        that.startTimer(60);
-        this.taulell.cards.forEach(function(val,idex){
+        this.timer.startTimer(timer);
+        
+        this.taulell.cards.forEach(function(val,index){
             document.getElementById(val.id).addEventListener("click", val.displayCard);
             document.getElementById(val.id).addEventListener("click", function() {
                 if(!that.fitxaSelected1) that.fitxaSelected1 = val;
                 else that.fitxaSelected2 = val;
-                openedCards.push(val.img_id);   
+                openedCards.push(val.img_id);
+                   
                 if(openedCards.length === 2){
                     let fitxa1 = document.getElementById(that.fitxaSelected1.id);
                     let fitxa2 = document.getElementById(that.fitxaSelected2.id);
-
                     if(that.correctCard(that.fitxaSelected1, that.fitxaSelected2)){
-                        that.moveCounter();
+                        punts += that.points(20);
                         that.matched(fitxa1, fitxa2);
                         that.fitxaSelected1 = null;
                         that.fitxaSelected2 = null;
@@ -47,41 +58,23 @@ export class Game {
                         openedCards = new Array();
                     }
                 }
+                document.getElementById("punts").textContent = punts;
             });
         });
     }
-   
-    startTimer(duration) {
-        let temps = duration, minuts, segons;
-        setInterval(function () {
-            minuts = parseInt(temps / 60, 10)
-            segons = parseInt(temps % 60, 10);
-    
-            minuts = minuts < 10 ? "0" + minuts : minuts;
-            segons = segons < 10 ? "0" + segons : segons;
-    
-            document.getElementById("time").textContent = minuts + ":" + segons;
-    
-            if (--temps < 0) {
-                temps = 0;
-            }
-        }, 1000);
-    }
-    endGame() {
-        console.log("Finsih");
-    }
-    moveCounter(){
-        let moves = 0;
-        moves++;
-        document.getElementById("punts").innerHTML = moves;
-       
-        
+    points(max){
+        let punts = 0;
+        if(max !== null || max !== 0) punts += max; 
+        return punts;
     }
     restartGame() {
 
     }
     winGame() {
-        
+        console.log("Hello");
+        this.taulell.cards.forEach(function(val, index) {
+           
+        });
     }
     matched(fitxa1, fitxa2) {
         fitxa1.classList.add("match", "disabled");

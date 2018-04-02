@@ -79,6 +79,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _Taulell = __webpack_require__(3);
 
+var _Timer = __webpack_require__(5);
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Game = exports.Game = function () {
@@ -86,44 +88,55 @@ var Game = exports.Game = function () {
         _classCallCheck(this, Game);
 
         this.taulell = new _Taulell.Taulell(4, 4, level);
-        this.startGameFacil();
-        this.levelFacil = level.level_facil;
-        this.levelMedio = level.level_medio;
-        this.levelDificil = level.level_dificil;
+        this.timer = new _Timer.Timer(level);
+        this.startGame();
     }
 
     _createClass(Game, [{
-        key: 'startGameFacil',
-        value: function startGameFacil() {
+        key: 'startGame',
+        value: function startGame() {
             var _this = this;
 
-            document.getElementById("facil").addEventListener('click', function (evt) {
-                return _this.startGame();
+            var that = this;
+            document.getElementById("lvl_facil").addEventListener('click', function (evt) {
+                return _this.startGameByLevel(_this.timer.levelFacil, _this.timer.timerFacil);
+            });
+            document.getElementById("lvl_medio").addEventListener('click', function (evt) {
+                return _this.startGameByLevel(_this.timer.levelMedio, _this.timer.timerMitja);
+            });
+            document.getElementById("lvl_dificil").addEventListener('click', function (evt) {
+                return _this.startGameByLevel(_this.timer.levelDificil, _this.timer.timerDificil);
             });
         }
     }, {
-        key: 'startGame',
-        value: function startGame() {
-            document.getElementById("game").style.display = "flex";
-            document.getElementById("info").style.display = "flex";
+        key: 'startGameByLevel',
+        value: function startGameByLevel(nivell, timer) {
 
-            var gameStarted = true;
+            console.log("EGKLGFOSD");
+            document.getElementById("game").classList.add("display-flex");
+            document.getElementById("info").classList.add("display-flex");
+            document.getElementById("menu-principal").classList.add("display-none");
+            document.getElementById("nivell").innerHTML = nivell;
+
+            this.taulell.flipCards(2000);
+            var punts = 0;
             var openedCards = new Array();
             this.fitxaSelected1;
             this.fitxaSelected2;
             var that = this;
-            that.startTimer(60);
-            this.taulell.cards.forEach(function (val, idex) {
+            this.timer.startTimer(timer);
+
+            this.taulell.cards.forEach(function (val, index) {
                 document.getElementById(val.id).addEventListener("click", val.displayCard);
                 document.getElementById(val.id).addEventListener("click", function () {
                     if (!that.fitxaSelected1) that.fitxaSelected1 = val;else that.fitxaSelected2 = val;
                     openedCards.push(val.img_id);
+
                     if (openedCards.length === 2) {
                         var fitxa1 = document.getElementById(that.fitxaSelected1.id);
                         var fitxa2 = document.getElementById(that.fitxaSelected2.id);
-
                         if (that.correctCard(that.fitxaSelected1, that.fitxaSelected2)) {
-                            that.moveCounter();
+                            punts += that.points(20);
                             that.matched(fitxa1, fitxa2);
                             that.fitxaSelected1 = null;
                             that.fitxaSelected2 = null;
@@ -135,47 +148,26 @@ var Game = exports.Game = function () {
                             openedCards = new Array();
                         }
                     }
+                    document.getElementById("punts").textContent = punts;
                 });
             });
         }
     }, {
-        key: 'startTimer',
-        value: function startTimer(duration) {
-            var temps = duration,
-                minuts = void 0,
-                segons = void 0;
-            setInterval(function () {
-                minuts = parseInt(temps / 60, 10);
-                segons = parseInt(temps % 60, 10);
-
-                minuts = minuts < 10 ? "0" + minuts : minuts;
-                segons = segons < 10 ? "0" + segons : segons;
-
-                document.getElementById("time").textContent = minuts + ":" + segons;
-
-                if (--temps < 0) {
-                    temps = 0;
-                }
-            }, 1000);
-        }
-    }, {
-        key: 'endGame',
-        value: function endGame() {
-            console.log("Finsih");
-        }
-    }, {
-        key: 'moveCounter',
-        value: function moveCounter() {
-            var moves = 0;
-            moves++;
-            document.getElementById("punts").innerHTML = moves;
+        key: 'points',
+        value: function points(max) {
+            var punts = 0;
+            if (max !== null || max !== 0) punts += max;
+            return punts;
         }
     }, {
         key: 'restartGame',
         value: function restartGame() {}
     }, {
         key: 'winGame',
-        value: function winGame() {}
+        value: function winGame() {
+            console.log("Hello");
+            this.taulell.cards.forEach(function (val, index) {});
+        }
     }, {
         key: 'matched',
         value: function matched(fitxa1, fitxa2) {
@@ -371,7 +363,7 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>F\xE0cil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3 id=\"nivell\"></h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\">00:00</h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Tornar</h3>\n                <button id=\"back\"><</button>\n            </div>\n            \n        ";
 
             return table;
         }
@@ -383,11 +375,26 @@ var Taulell = exports.Taulell = function () {
     }, {
         key: "createMenuPrincipal",
         value: function createMenuPrincipal() {
-            console.log("Hello menu");
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\">\n                <h3>Escull el nivell</h3> \n                <button class=\"play\" id=\"facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">Dif\xEDcil</button> \n            </div>\n        ";
+            menu += "\n            <div id=\"menu-principal\">\n                <h2>Escull el nivell</h2> \n                <button class=\"play\" id=\"lvl_facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"lvl_medio\">Mitj\xE0</button> \n                <button class=\"play\" id=\"lvl_dificil\">Dif\xEDcil</button> \n            </div>\n        ";
             return menu;
+        }
+    }, {
+        key: "flipCards",
+        value: function flipCards(time) {
+            var _this = this;
+
+            this.cards.forEach(function (card, index) {
+                document.getElementById(card.id).classList.toggle("open");
+                document.getElementById(card.id).classList.toggle("disabled");
+            });
+            setTimeout(function () {
+                _this.cards.forEach(function (card, index) {
+                    document.getElementById(card.id).classList.toggle("open");
+                    document.getElementById(card.id).classList.toggle("disabled");
+                });
+            }, time);
         }
     }]);
 
@@ -447,6 +454,91 @@ var Fitxa = exports.Fitxa = function () {
     }]);
 
     return Fitxa;
+}();
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Timer = exports.Timer = function () {
+    function Timer(level) {
+        _classCallCheck(this, Timer);
+
+        this.timerFacil = level.timerFacil;
+        this.timerMitja = level.timerMitja;
+        this.timerDificil = level.timerDificil;
+        this.levelFacil = level.levelFacil;
+        this.levelMedio = level.levelMedio;
+        this.levelDificil = level.levelDificil;
+        console.log(level);
+    }
+
+    _createClass(Timer, [{
+        key: "startTimer",
+        value: function startTimer(duration) {
+            var temps = duration,
+                minuts = void 0,
+                segons = void 0;
+            var that = this;
+            setInterval(function () {
+                minuts = parseInt(temps / 60, 10);
+                segons = parseInt(temps % 60, 10);
+
+                minuts = minuts < 10 ? "0" + minuts : minuts;
+                segons = segons < 10 ? "0" + segons : segons;
+
+                document.getElementById("time").textContent = minuts + ":" + segons;
+
+                if (--temps < 0) {
+                    temps = 0;
+                    return true;
+                }
+            }, 1000);
+        }
+    }, {
+        key: "getLevelFacil",
+        value: function getLevelFacil() {
+            return this.levelFacil;
+        }
+    }, {
+        key: "getLevelMedio",
+        value: function getLevelMedio() {
+            return this.levelMedio;
+        }
+    }, {
+        key: "getLevelDificil",
+        value: function getLevelDificil() {
+            return this.levelDificil;
+        }
+    }, {
+        key: "getTimerFacil",
+        value: function getTimerFacil() {
+            return this.timerFacil;
+        }
+    }, {
+        key: "getTimerMitja",
+        value: function getTimerMitja() {
+            return this.timerMitja;
+        }
+    }, {
+        key: "getTimerDificil",
+        value: function getTimerDificil() {
+            return this.timerDificil;
+        }
+    }]);
+
+    return Timer;
 }();
 
 /***/ })
