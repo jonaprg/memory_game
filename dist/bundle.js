@@ -377,7 +377,7 @@ var Taulell = exports.Taulell = function () {
         value: function createMenuPrincipal() {
             var menu = "";
 
-            menu += "\n            <div id=\"menu-principal\">\n<<<<<<< HEAD\n                <h2>Escull el nivell</h2> \n                <button class=\"play\" id=\"lvl_facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"lvl_medio\">Mitj\xE0</button> \n                <button class=\"play\" id=\"lvl_dificil\">Dif\xEDcil</button> \n=======\n                <h1>Escull el nivell</h1> \n                <button class=\"play\" id=\"facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">Dif\xEDcil</button> \n>>>>>>> 8ca841cd8dd4f93181fcf777849605baae2b59b4\n            </div>\n        ";
+            menu += "\n            <div id=\"menu-principal\">\n                <h2>Escull el nivell</h2> \n                <button class=\"play\" id=\"lvl_facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"lvl_medio\">Mitj\xE0</button> \n                <button class=\"play\" id=\"lvl_dificil\">Dif\xEDcil</button> \n            </div>\n        ";
             return menu;
         }
     }, {
