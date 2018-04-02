@@ -371,7 +371,7 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>Facil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>F\xE0cil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
 
             return table;
         }
@@ -386,7 +386,7 @@ var Taulell = exports.Taulell = function () {
             console.log("Hello menu");
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\">\n                <h3>Tria el nivell</h3> \n                <button class=\"play\" id=\"facil\">Facil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">D\xEDficil</button> \n            </div>\n        ";
+            menu += "\n            <div class=\"menu-principal\">\n                <h3>Escull el nivell</h3> \n                <button class=\"play\" id=\"facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">Dif\xEDcil</button> \n            </div>\n        ";
             return menu;
         }
     }]);
