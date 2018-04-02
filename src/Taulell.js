@@ -17,7 +17,7 @@ export class Taulell {
         this.menu= this.createMenuPrincipal();
         this.printMenu();
         
-        
+
     }
     generateCards(level) {
         let cards = [];
@@ -101,9 +101,8 @@ export class Taulell {
        
         menu +=  `
             <div class="menu-principal"> 
-               <button id="facil">Juga!</button> 
+               <button id="play">Juga!</button> 
             </div>
-            
         `;
         return menu;
     }

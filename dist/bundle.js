@@ -391,7 +391,7 @@ var Taulell = exports.Taulell = function () {
             console.log("Hello menu");
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\"> \n               <button id=\"facil\">Juga!</button> \n            </div>\n            \n        ";
+            menu += "\n            <div class=\"menu-principal\"> \n               <button id=\"play\">Juga!</button> \n            </div>\n        ";
             return menu;
         }
     }]);
