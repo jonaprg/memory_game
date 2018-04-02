@@ -27,23 +27,4 @@ export class Timer {
             }
         }, 1000);
     }
-    getLevelFacil() {
-        return this.levelFacil;
-    }
-    getLevelMedio() {
-        return this.levelMedio;
-    }
-    getLevelDificil() {
-        return this.levelDificil;
-    }
-    getTimerFacil() {
-        return this.timerFacil;
-    }
-    getTimerMitja() {
-        return this.timerMitja;
-    }
-    getTimerDificil() {
-        return this.timerDificil;
-    }
-
 }

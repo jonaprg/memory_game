@@ -296,13 +296,10 @@ var Taulell = exports.Taulell = function () {
 
         this.columns = columns;
         this.rows = rows;
-
         this.cards = this.generateCards(level);
         this.shuffleCards(this.cards);
-
         this.table = this.generateTaulell();
         this.printTaulell();
-
         this.menu = this.createMenuPrincipal();
         this.printMenu();
     }
@@ -363,8 +360,7 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3 id=\"nivell\"></h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\">00:00</h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Tornar</h3>\n                <button id=\"back\"><</button>\n            </div>\n            \n        ";
-
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3 id=\"nivell\"></h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\">00:00</h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Tornar</h3>\n                <button id=\"back\"><</button>\n            </div>\n        ";
             return table;
         }
     }, {
@@ -376,7 +372,6 @@ var Taulell = exports.Taulell = function () {
         key: "createMenuPrincipal",
         value: function createMenuPrincipal() {
             var menu = "";
-
             menu += "\n            <div id=\"menu-principal\">\n                <h2>Escull el nivell</h2> \n                <button class=\"play\" id=\"lvl_facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"lvl_medio\">Mitj\xE0</button> \n                <button class=\"play\" id=\"lvl_dificil\">Dif\xEDcil</button> \n            </div>\n        ";
             return menu;
         }
@@ -505,36 +500,6 @@ var Timer = exports.Timer = function () {
                     return true;
                 }
             }, 1000);
-        }
-    }, {
-        key: "getLevelFacil",
-        value: function getLevelFacil() {
-            return this.levelFacil;
-        }
-    }, {
-        key: "getLevelMedio",
-        value: function getLevelMedio() {
-            return this.levelMedio;
-        }
-    }, {
-        key: "getLevelDificil",
-        value: function getLevelDificil() {
-            return this.levelDificil;
-        }
-    }, {
-        key: "getTimerFacil",
-        value: function getTimerFacil() {
-            return this.timerFacil;
-        }
-    }, {
-        key: "getTimerMitja",
-        value: function getTimerMitja() {
-            return this.timerMitja;
-        }
-    }, {
-        key: "getTimerDificil",
-        value: function getTimerDificil() {
-            return this.timerDificil;
         }
     }]);
 
