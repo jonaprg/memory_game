@@ -90,6 +90,8 @@ var Game = exports.Game = function () {
         this.taulell = new _Taulell.Taulell(4, 4, level);
         this.timer = new _Timer.Timer(level);
         this.startGame();
+
+        //this.winGame();
     }
 
     _createClass(Game, [{
@@ -112,7 +114,6 @@ var Game = exports.Game = function () {
         key: 'startGameByLevel',
         value: function startGameByLevel(nivell, timer) {
 
-            console.log("EGKLGFOSD");
             document.getElementById("game").classList.add("display-flex");
             document.getElementById("info").classList.add("display-flex");
             document.getElementById("menu-principal").classList.add("display-none");
@@ -148,7 +149,7 @@ var Game = exports.Game = function () {
                             openedCards = new Array();
                         }
                     }
-                    document.getElementById("punts").textContent = punts;
+                    document.getElementById("punts").innerHTML = punts;
                 });
             });
         }
@@ -160,8 +161,24 @@ var Game = exports.Game = function () {
             return punts;
         }
     }, {
+        key: 'botoBack',
+        value: function botoBack() {
+            document.getElementById("back").addEventListener("click", function () {
+                var menu = document.getElementById("menu-principal");
+                menu.classList.add("display-flex");
+                var taulell = document.getElementById("game");
+                taulell.classList.add("display-none");
+                var infor = documet.getElementById("info");
+                infor.classList - add("display-none");
+            });
+        }
+    }, {
         key: 'restartGame',
-        value: function restartGame() {}
+        value: function restartGame() {
+            this.taulell.cards.forEach(function (val, index) {
+                document.getElementById(val.id).classList.remove("open", "match", "disabled");
+            });
+        }
     }, {
         key: 'winGame',
         value: function winGame() {
@@ -471,7 +488,7 @@ var Timer = exports.Timer = function () {
         _classCallCheck(this, Timer);
 
         this.timerFacil = level.timerFacil;
-        this.timerMitja = level.timerMitja;
+        this.timerMitja = level.timerMedio;
         this.timerDificil = level.timerDificil;
         this.levelFacil = level.levelFacil;
         this.levelMedio = level.levelMedio;
