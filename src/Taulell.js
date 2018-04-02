@@ -73,7 +73,7 @@ export class Taulell {
         table +=  `
             <div class="item-info"> 
                 <h3>Nivell</h3>
-                <h3>Facil</h3>
+                <h3>Fàcil</h3>
             </div>
             <div class="item-info">
                 <h3>Temps</h3>

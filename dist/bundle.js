@@ -376,7 +376,7 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>Facil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3>F\xE0cil</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\"></h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Back</h3>\n            </div>\n            \n        ";
 
             return table;
         }
