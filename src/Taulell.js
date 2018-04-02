@@ -7,17 +7,12 @@ export class Taulell {
     constructor(columns, rows, level){  
         this.columns = columns;
         this.rows = rows;   
-    
         this.cards = this.generateCards(level);
         this.shuffleCards(this.cards);
-        
         this.table = this.generateTaulell();
         this.printTaulell();
-
         this.menu= this.createMenuPrincipal();
         this.printMenu();
-        
-
     }
     generateCards(level) {
         let cards = [];
@@ -87,31 +82,20 @@ export class Taulell {
                 <h3>Tornar</h3>
                 <button id="back"><</button>
             </div>
-            
         `;
-        
         return table;
     }
-
     printMenu(){
         Game.getApp().innerHTML += this.menu;
     }
     createMenuPrincipal() {
         let menu = ``;
-       
         menu +=  `
             <div id="menu-principal">
-<<<<<<< HEAD
                 <h2>Escull el nivell</h2> 
                 <button class="play" id="lvl_facil">Fàcil</button> 
                 <button class="play" id="lvl_medio">Mitjà</button> 
                 <button class="play" id="lvl_dificil">Difícil</button> 
-=======
-                <h1>Escull el nivell</h1> 
-                <button class="play" id="facil">Fàcil</button> 
-                <button class="play" id="mitja">Mitjà</button> 
-                <button class="play" id="dificil">Difícil</button> 
->>>>>>> 8ca841cd8dd4f93181fcf777849605baae2b59b4
             </div>
         `;
         return menu;
