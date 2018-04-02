@@ -386,7 +386,7 @@ var Taulell = exports.Taulell = function () {
             console.log("Hello menu");
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\">\n                <h1>Escull el nivell</h1> \n                <button class=\"play\" id=\"facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">Dif\xEDcil</button> \n            </div>\n        ";
+            menu += "\n            <div id=\"menu-principal\">\n                <h1>Escull el nivell</h1> \n                <button class=\"play\" id=\"facil\">F\xE0cil</button> \n                <button class=\"play\" id=\"mitja\">Mitj\xE0</button> \n                <button class=\"play\" id=\"dificil\">Dif\xEDcil</button> \n            </div>\n        ";
             return menu;
         }
     }]);

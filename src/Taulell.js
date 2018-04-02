@@ -100,7 +100,7 @@ export class Taulell {
         let menu = ``;
        
         menu +=  `
-            <div class="menu-principal">
+            <div id="menu-principal">
                 <h1>Escull el nivell</h1> 
                 <button class="play" id="facil">Fàcil</button> 
                 <button class="play" id="mitja">Mitjà</button> 
