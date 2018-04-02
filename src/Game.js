@@ -22,7 +22,7 @@ export class Game {
         this.fitxaSelected1;
         this.fitxaSelected2;
         let that = this;
-        that.startTimer(5, 0);
+        that.startTimer(60);
         this.taulell.cards.forEach(function(val,idex){
             document.getElementById(val.id).addEventListener("click", val.displayCard);
             document.getElementById(val.id).addEventListener("click", function() {
@@ -51,28 +51,21 @@ export class Game {
         });
     }
    
-    startTimer(second, minute) {
-
-        let timer = document.getElementById("time");
-        let interval;
-        
-        interval = setInterval(function(){
-        timer.innerHTML = minute+" mins "+second+" secs";
-        console.log(minute + "min");
-        console.log(second + "sec");
-        second--;
-        if(second === 0){
-            minute--;
-            second=60;
-        }
-        
-        if(minute === 0 && second === 0){
-           
-            second = 0;
-            minute = 0;
-            this.endGame();
-        }
-        },1000);   
+    startTimer(duration) {
+        let temps = duration, minuts, segons;
+        setInterval(function () {
+            minuts = parseInt(temps / 60, 10)
+            segons = parseInt(temps % 60, 10);
+    
+            minuts = minuts < 10 ? "0" + minuts : minuts;
+            segons = segons < 10 ? "0" + segons : segons;
+    
+            document.getElementById("time").textContent = minuts + ":" + segons;
+    
+            if (--temps < 0) {
+                temps = 0;
+            }
+        }, 1000);
     }
     endGame() {
         console.log("Finsih");

@@ -112,7 +112,7 @@ var Game = exports.Game = function () {
             this.fitxaSelected1;
             this.fitxaSelected2;
             var that = this;
-            that.startTimer(5, 0);
+            that.startTimer(60);
             this.taulell.cards.forEach(function (val, idex) {
                 document.getElementById(val.id).addEventListener("click", val.displayCard);
                 document.getElementById(val.id).addEventListener("click", function () {
@@ -140,26 +140,21 @@ var Game = exports.Game = function () {
         }
     }, {
         key: 'startTimer',
-        value: function startTimer(second, minute) {
+        value: function startTimer(duration) {
+            var temps = duration,
+                minuts = void 0,
+                segons = void 0;
+            setInterval(function () {
+                minuts = parseInt(temps / 60, 10);
+                segons = parseInt(temps % 60, 10);
 
-            var timer = document.getElementById("time");
-            var interval = void 0;
+                minuts = minuts < 10 ? "0" + minuts : minuts;
+                segons = segons < 10 ? "0" + segons : segons;
 
-            interval = setInterval(function () {
-                timer.innerHTML = minute + " mins " + second + " secs";
-                console.log(minute + "min");
-                console.log(second + "sec");
-                second--;
-                if (second === 0) {
-                    minute--;
-                    second = 60;
-                }
+                document.getElementById("time").textContent = minuts + ":" + segons;
 
-                if (minute === 0 && second === 0) {
-
-                    second = 0;
-                    minute = 0;
-                    this.endGame();
+                if (--temps < 0) {
+                    temps = 0;
                 }
             }, 1000);
         }
