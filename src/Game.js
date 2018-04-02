@@ -17,7 +17,7 @@ export class Game {
             evt => this.startGameByLevel(this.timer.levelMedio, this.timer.timerMitja));
         document.getElementById("lvl_dificil").addEventListener('click', 
             evt => this.startGameByLevel(this.timer.levelDificil, this.timer.timerDificil));
-        this.botoBack();
+        this.backToMenu();
     }
     startGameByLevel(nivell, duration) {
         
@@ -66,7 +66,7 @@ export class Game {
         if(max !== null || max !== 0) punts += max; 
         return punts;
     }
-    botoBack(){
+    backToMenu(){
         let that = this;
         document.getElementById("back").addEventListener("click",function(){
             document.getElementById("menu-principal").classList.remove("display-none");
@@ -112,7 +112,20 @@ export class Game {
         return document.getElementById('app');
     }
 
+<<<<<<< HEAD
 
+=======
+    botoBack(){
+        document.getElementById("back").addEventListener("click",function(){
+        var menu = document.getElementById("menu-principal");
+        menu.classList.add("display-flex");
+        var taulell = document.getElementById("game");
+        taulell.classList.add("display-none");
+        var infor = documet.getElementById("info");
+        infor.classList-add("display-none");
+        });
+    }
+>>>>>>> af20641167c1c2c19931ddb3f38bbcfd17b5ad03
 
   
     
