@@ -6,7 +6,7 @@ export class Game {
        this.taulell = new Taulell(4, 4, level);
        this.timer = new Timer(level);
        this.startGame();
-       this.botoBack
+       this.botoBack();
       
        
     }
@@ -100,9 +100,14 @@ export class Game {
     }
 
     botoBack(){
-        document.getElementById("back").addEventListener("click",this.botoBack);
-        var boto = document.getElementById("back");
-        boto.classList.add("display-none");
+        document.getElementById("back").addEventListener("click",function(){
+        var menu = document.getElementById("menu-principal");
+        menu.classList.add("display-flex");
+        var taulell = document.getElementById("game");
+        taulell.classList.add("display-none");
+        var infor = documet.getElementById("info");
+        infor.classList-add("display-none");
+        });
     }
 
   
