@@ -90,6 +90,7 @@ var Game = exports.Game = function () {
         this.taulell = new _Taulell.Taulell(4, 4, level);
         this.timer = new _Timer.Timer(level);
         this.startGame();
+        this.botoBack;
 
         //this.winGame();
     }
@@ -207,6 +208,13 @@ var Game = exports.Game = function () {
         key: 'correctCard',
         value: function correctCard(fitxa1, fitxa2) {
             return fitxa1.name === fitxa2.name;
+        }
+    }, {
+        key: 'botoBack',
+        value: function botoBack() {
+            document.getElementById("back").addEventListener("click", this.botoBack);
+            var boto = document.getElementById("back");
+            boto.classList.add("display-none");
         }
     }], [{
         key: 'getApp',
