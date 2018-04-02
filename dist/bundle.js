@@ -353,7 +353,7 @@ var Taulell = exports.Taulell = function () {
         value: function createMenuPrincipal() {
             var menu = "";
 
-            menu += "\n            <div class=\"menu-principal\"> \n               <button type=\"button\">Juga!</button> \n            </div>\n            \n        ";
+            menu += "\n            <div class=\"menu-principal\"> \n               <button type=\"button\" id=\"boto\">Juga!</button> \n            </div>\n        ";
             return menu;
         }
     }]);

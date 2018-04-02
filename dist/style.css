@@ -44,10 +44,10 @@ body {
 }
 
 /*BOTO JUGA*/
-.menu-principal{
-  background-color: greenyellow;
-  width: 30%;
-  height: 100px;
+#boto{
+   width: 30%;
+   height: 50px;
+   background-color: greenyellow;
 }
 /* Game table */
 #game {
