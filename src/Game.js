@@ -17,13 +17,10 @@ export class Game {
             evt => this.startGameByLevel(this.timer.levelMedio, this.timer.timerMitja));
         document.getElementById("lvl_dificil").addEventListener('click', 
             evt => this.startGameByLevel(this.timer.levelDificil, this.timer.timerDificil));
-        this.backToMenu();
+        this.backToMenu("back");
     }
     startGameByLevel(nivell, duration) {
-        
-        document.getElementById("game").classList.add("display-flex");
-        document.getElementById("info").classList.add("display-flex"); 
-        document.getElementById("menu-principal").classList.add("display-none");
+        this.taulell.displayTaulell();
         document.getElementById("nivell").innerHTML = nivell;
         this.timer.startTimer(duration);
         this.taulell.flipCards(2000);
@@ -31,7 +28,7 @@ export class Game {
         this.fitxaSelected1;
         this.fitxaSelected2;
         let that = this;
-       
+        /*this.endGameByTime(duration);*/
         this.taulell.cards.forEach(function(val,index){
             document.getElementById(val.id).addEventListener("click", val.displayCard);
             document.getElementById(val.id).addEventListener("click", function() {
@@ -54,21 +51,23 @@ export class Game {
                         that.fitxaSelected2 = null;
                         that.openedCards = new Array();
                     }
-                    console.log("AFTER"); 
-                    console.log(that.openedCards); 
+                    
                 }
+                that.winGame(); 
                 document.getElementById("punts").innerHTML = punts;
             });
+            
         });
+        
     }
     points(max){
         let punts = 0;
         if(max !== null || max !== 0) punts += max; 
         return punts;
     }
-    backToMenu(){
+    backToMenu(element){
         let that = this;
-        document.getElementById("back").addEventListener("click",function(){
+        document.getElementById(element).addEventListener("click",function(){
             document.getElementById("menu-principal").classList.remove("display-none");
             document.getElementById("game").classList.remove("display-flex");
             document.getElementById("info").classList.remove("display-flex");
@@ -77,18 +76,29 @@ export class Game {
         });
     }
     restartGame() {
-        ;
         this.taulell.cards.forEach(function(val,index){
             document.getElementById(val.id).classList.remove("open", "match", "disabled");
         });
-        
-        window.location.reload(true)
+        window.location.reload(true);
     }
+    /*endGameByTime(duration) {
+       
+        if(!this.timer.interval) {
+            console.log("Hefds")
+            this.timer.clearSetInterval();
+            document.getElementById("popup2").classList.add("show");
+            this.backToMenu("play-againLose");
+            
+        }
+    }*/
     winGame() {
-        
-        this.taulell.cards.forEach(function(val, index) {
-           
-        });
+        console.log(document.getElementsByClassName("match").length);
+        if(document.getElementsByClassName("match").length === 16) {
+            this.timer.clearSetInterval();
+            document.getElementById("popup1").classList.add("show");
+            this.backToMenu("play-again");
+            
+        }
     }
     matched(fitxa1, fitxa2) {
         fitxa1.classList.add("match", "disabled");
@@ -104,29 +114,10 @@ export class Game {
             fitxa2.classList.remove("open","unmatched", "disabled");
         },1500);       
     }
-    
     correctCard(fitxa1,fitxa2) {
         return fitxa1.name === fitxa2.name;
     }
     static getApp(){
         return document.getElementById('app');
-    }
-
-<<<<<<< HEAD
-
-=======
-    botoBack(){
-        document.getElementById("back").addEventListener("click",function(){
-        var menu = document.getElementById("menu-principal");
-        menu.classList.add("display-flex");
-        var taulell = document.getElementById("game");
-        taulell.classList.add("display-none");
-        var infor = documet.getElementById("info");
-        infor.classList-add("display-none");
-        });
-    }
->>>>>>> af20641167c1c2c19931ddb3f38bbcfd17b5ad03
-
-  
-    
+    }  
 }

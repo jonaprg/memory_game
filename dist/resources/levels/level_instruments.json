@@ -4,7 +4,7 @@
     "levelMedio" : "Mitjà",
     "timerMedio" : 120,
     "levelDificil" : "Difícil",
-    "timerDificil" : 102,
+    "timerDificil" : 5,
     "images_amount" : 8,
     "images_path": "resources/img/",
     "images": [

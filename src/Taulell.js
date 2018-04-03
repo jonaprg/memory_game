@@ -13,6 +13,11 @@ export class Taulell {
         this.printTaulell();
         this.menu= this.createMenuPrincipal();
         this.printMenu();
+        this.modal = this.createModalWin();
+        this.printModalWin();
+
+        this.loseModal = this.createModalLose();
+        this.printModalLose();
     }
     generateCards(level) {
         let cards = [];
@@ -99,6 +104,45 @@ export class Taulell {
             </div>
         `;
         return menu;
+    }
+    printModalWin() {
+        Game.getApp().innerHTML += this.modal;
+    }
+    createModalWin() {
+        let modal = ``;
+        modal += `
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Felicitats has guanyat! :)</h2>
+                <button id="play-again">
+                    Tornar a jugar!</a>
+                </button>
+            </div>
+        </div>
+        `;
+        return modal;
+    }
+    printModalLose() {
+        Game.getApp().innerHTML += this.loseModal;
+    }
+    createModalLose() {
+        let modal = ``;
+        modal += `
+        <div id="popup2" class="overlay">
+            <div class="popup">
+                <h2>Has perdut! :(</h2>
+                <button id="play-againLose">
+                    Tornar a jugar!</a>
+                </button>
+            </div>
+        </div>
+        `;
+        return modal;
+    }
+    displayTaulell() {
+        document.getElementById("game").classList.add("display-flex");
+        document.getElementById("info").classList.add("display-flex"); 
+        document.getElementById("menu-principal").classList.add("display-none");   
     }
     flipCards (time) {
         this.cards.forEach(function(card,index) { 
