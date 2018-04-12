@@ -77,7 +77,7 @@ export class Taulell {
             </div>
             <div class="item-info">
                 <h3>Temps</h3>
-                <h3 id="time">00:00</h3> 
+                <h3 id="timed">Comming Soon</h3> 
             </div>
             <div class="item-info">
                 <h3>Punts</h3>

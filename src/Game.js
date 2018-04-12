@@ -5,8 +5,9 @@ export class Game {
     constructor(level){
        this.taulell = new Taulell(4, 4, level);
        this.timer = new Timer(level);
-       this.startGame();
        this.openedCards = new Array();
+       this.startGame();
+
     }
     startGame() {
         let that = this;
@@ -28,7 +29,7 @@ export class Game {
         this.fitxaSelected1;
         this.fitxaSelected2;
         let that = this;
-        /*this.endGameByTime(duration);*/
+
         this.taulell.cards.forEach(function(val,index){
             document.getElementById(val.id).addEventListener("click", val.displayCard);
             document.getElementById(val.id).addEventListener("click", function() {
@@ -82,22 +83,18 @@ export class Game {
         window.location.reload(true);
     }
     /*endGameByTime(duration) {
-       
         if(!this.timer.interval) {
             console.log("Hefds")
             this.timer.clearSetInterval();
             document.getElementById("popup2").classList.add("show");
-            this.backToMenu("play-againLose");
-            
+            this.backToMenu("play-againLose"); 
         }
     }*/
     winGame() {
-        console.log(document.getElementsByClassName("match").length);
         if(document.getElementsByClassName("match").length === 16) {
             this.timer.clearSetInterval();
             document.getElementById("popup1").classList.add("show");
             this.backToMenu("play-again");
-            
         }
     }
     matched(fitxa1, fitxa2) {

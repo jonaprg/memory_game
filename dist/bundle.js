@@ -89,8 +89,8 @@ var Game = exports.Game = function () {
 
         this.taulell = new _Taulell.Taulell(4, 4, level);
         this.timer = new _Timer.Timer(level);
-        this.startGame();
         this.openedCards = new Array();
+        this.startGame();
     }
 
     _createClass(Game, [{
@@ -122,7 +122,7 @@ var Game = exports.Game = function () {
             this.fitxaSelected1;
             this.fitxaSelected2;
             var that = this;
-            /*this.endGameByTime(duration);*/
+
             this.taulell.cards.forEach(function (val, index) {
                 document.getElementById(val.id).addEventListener("click", val.displayCard);
                 document.getElementById(val.id).addEventListener("click", function () {
@@ -177,20 +177,17 @@ var Game = exports.Game = function () {
             window.location.reload(true);
         }
         /*endGameByTime(duration) {
-           
             if(!this.timer.interval) {
                 console.log("Hefds")
                 this.timer.clearSetInterval();
                 document.getElementById("popup2").classList.add("show");
-                this.backToMenu("play-againLose");
-                
+                this.backToMenu("play-againLose"); 
             }
         }*/
 
     }, {
         key: 'winGame',
         value: function winGame() {
-            console.log(document.getElementsByClassName("match").length);
             if (document.getElementsByClassName("match").length === 16) {
                 this.timer.clearSetInterval();
                 document.getElementById("popup1").classList.add("show");
@@ -394,7 +391,7 @@ var Taulell = exports.Taulell = function () {
         value: function createTableInfo() {
             var table = "";
 
-            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3 id=\"nivell\"></h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"time\">00:00</h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Tornar</h3>\n                <button id=\"back\"><</button>\n            </div>\n        ";
+            table += "\n            <div class=\"item-info\"> \n                <h3>Nivell</h3>\n                <h3 id=\"nivell\"></h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Temps</h3>\n                <h3 id=\"timed\">Comming Soon</h3> \n            </div>\n            <div class=\"item-info\">\n                <h3>Punts</h3>\n                <h3 id=\"punts\">0</h3>\n            </div>\n            <div class=\"item-info\">\n                <h3>Tornar</h3>\n                <button id=\"back\"><</button>\n            </div>\n        ";
             return table;
         }
     }, {
@@ -509,12 +506,17 @@ var Fitxa = exports.Fitxa = function () {
     }, {
         key: "getHTML",
         value: function getHTML() {
-            return "\n            <div class=\"item-card\" id=\"" + this.id + "\" name=\"" + this.img_id + "\" >\n                <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" />  \n            </div>\n            \n            ";
+            return "\n\n            <div class=\"item-card\" id=\"" + this.id + "\" name=\"" + this.img_id + "\">\n                <div class=\"side\">\n                 </div>   \n                <div class=\"side back\">\n                    <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" style=\"width: 100%; height: 100%;\">\n                </div>\n            </div>\n            ";
         }
     }]);
 
     return Fitxa;
 }();
+/* 
+            <div class="item-card" id="${this.id}" name="${ this.img_id}" >
+                <img src="${this.imagesPath + this.img_path}" alt="${this.name}" />  
+            </div>
+*/
 
 /***/ }),
 /* 5 */
