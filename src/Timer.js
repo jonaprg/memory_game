@@ -21,7 +21,7 @@ export class Timer {
             minuts = minuts < 10 ? "0" + minuts : minuts;
             segons = segons < 10 ? "0" + segons : segons;
     
-            document.getElementById("time").textContent = minuts + ":" + segons;
+            //document.getElementById("time").innerHTML = minuts + ":" + segons;
     
             if (--temps < 0) {
                 temps = 0;

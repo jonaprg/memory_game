@@ -89,9 +89,10 @@ body {
     box-shadow: 5px 2px 20px 0 rgb(37, 37, 36);
     display: flex;
     justify-content: center;
+
 }
 .item-card.open {
-	transform: rotateY(0);
+    transform: rotateY(0);
 	background: #93969b;
 	cursor: default;
 	animation-name: flipInY;

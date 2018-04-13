@@ -156,5 +156,21 @@ export class Taulell {
            });
         }, time);
     }
+    disableCards(){
+        Array.prototype.filter.call(this.cards, function(card){
+
+            document.getElementById(card.id).classList.add('disabled');
+        });
+    }
+    enableCards(){
+        let matchedCards = document.getElementsByClassName("match");
+        Array.prototype.filter.call(this.cards, function(card){
+            document.getElementById(card.id).classList.remove('disabled');
+            for(var i = 0; i < matchedCards.length; i++){
+                matchedCards[i].classList.add("disabled");
+            }
+        });
+    }
+    
 }
 

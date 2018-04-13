@@ -205,11 +205,14 @@ var Game = exports.Game = function () {
     }, {
         key: 'unmatched',
         value: function unmatched(fitxa1, fitxa2) {
+            var that = this;
             fitxa1.classList.add("unmatched");
             fitxa2.classList.add("unmatched");
+            this.taulell.disableCards();
             setTimeout(function () {
                 fitxa1.classList.remove("open", "unmatched", "disabled");
                 fitxa2.classList.remove("open", "unmatched", "disabled");
+                that.taulell.enableCards();
             }, 1500);
         }
     }, {
@@ -453,6 +456,25 @@ var Taulell = exports.Taulell = function () {
                 });
             }, time);
         }
+    }, {
+        key: "disableCards",
+        value: function disableCards() {
+            Array.prototype.filter.call(this.cards, function (card) {
+
+                document.getElementById(card.id).classList.add('disabled');
+            });
+        }
+    }, {
+        key: "enableCards",
+        value: function enableCards() {
+            var matchedCards = document.getElementsByClassName("match");
+            Array.prototype.filter.call(this.cards, function (card) {
+                document.getElementById(card.id).classList.remove('disabled');
+                for (var i = 0; i < matchedCards.length; i++) {
+                    matchedCards[i].classList.add("disabled");
+                }
+            });
+        }
     }]);
 
     return Taulell;
@@ -506,17 +528,12 @@ var Fitxa = exports.Fitxa = function () {
     }, {
         key: "getHTML",
         value: function getHTML() {
-            return "\n\n            <div class=\"item-card\" id=\"" + this.id + "\" name=\"" + this.img_id + "\">\n                <div class=\"side\">\n                 </div>   \n                <div class=\"side back\">\n                    <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" style=\"width: 100%; height: 100%;\">\n                </div>\n            </div>\n            ";
+            return "\n        <div class=\"item-card\" id=\"" + this.id + "\" name=\"" + this.img_id + "\" >\n                <img src=\"" + (this.imagesPath + this.img_path) + "\" alt=\"" + this.name + "\" />  \n            </div>\n        ";
         }
     }]);
 
     return Fitxa;
 }();
-/* 
-            <div class="item-card" id="${this.id}" name="${ this.img_id}" >
-                <img src="${this.imagesPath + this.img_path}" alt="${this.name}" />  
-            </div>
-*/
 
 /***/ }),
 /* 5 */
@@ -562,7 +579,7 @@ var Timer = exports.Timer = function () {
                 minuts = minuts < 10 ? "0" + minuts : minuts;
                 segons = segons < 10 ? "0" + segons : segons;
 
-                document.getElementById("time").textContent = minuts + ":" + segons;
+                //document.getElementById("time").innerHTML = minuts + ":" + segons;
 
                 if (--temps < 0) {
                     temps = 0;

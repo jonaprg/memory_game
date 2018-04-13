@@ -104,16 +104,21 @@ export class Game {
         fitxa2.classList.remove("open");      
     }
     unmatched(fitxa1, fitxa2) {
+        let that = this;
         fitxa1.classList.add("unmatched");
         fitxa2.classList.add("unmatched");
+        this.taulell.disableCards();
         setTimeout(function(){
             fitxa1.classList.remove("open","unmatched", "disabled");
             fitxa2.classList.remove("open","unmatched", "disabled");
+            that.taulell.enableCards();
         },1500);       
     }
     correctCard(fitxa1,fitxa2) {
         return fitxa1.name === fitxa2.name;
     }
+
+
     static getApp(){
         return document.getElementById('app');
     }  
